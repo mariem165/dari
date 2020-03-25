@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import Interfaces.IUserRemote;
+import Utils.JavaMailUtil;
 import Utils.MD5Hash;
 import tn.esprit.dari.entities.AccountState;
 import tn.esprit.dari.entities.User;
@@ -36,6 +37,13 @@ public class UserService implements IUserRemote{
         String activationHashedCode = MD5Hash.getMD5Hash(user.getNtelephone()+ user.getEmail());
         user.setConfirmationToken(activationHashedCode);
         user.setCreatedAt(new Date());
+        try {
+			JavaMailUtil.sendMail(user.getEmail(), "Confirmation code",
+					"Your confirmation code : " + activationHashedCode);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         entityManager.persist(user);
     }
     
@@ -78,6 +86,10 @@ public class UserService implements IUserRemote{
         if (user.getNtelephone() != null) {
             p.setNtelephone(user.getNtelephone());
         }
+        if (user.getAddress() != null) {
+            p.setAddress(user.getAddress());
+        }
+        
  
     }
 
@@ -113,8 +125,28 @@ public class UserService implements IUserRemote{
         return false;
     }
     
-    
+    @Override
+	public int AssignAdmin(int id) {
+		User user = findUserById(id);
+		user.setUsertype(UserType.admin);
+		entityManager.merge(user);
 
-    
+		return user.getId();
+	}
+
+    @Override
+	public User loginUser(String email, String pwd) {
+
+		String hashedPwd = MD5Hash.getMD5Hash(pwd);
+		Query query = entityManager.createQuery(
+
+				"SELECT u FROM User u WHERE (u.email=:uname AND u.password=:upwd) ");
+		User user = (User) query.setParameter("uname", email).setParameter("upwd", hashedPwd).getSingleResult();
+		UserType a = user.getUsertype();
+		this.UserLogged = user;
+
+		return user;
+
+	}
 
 }

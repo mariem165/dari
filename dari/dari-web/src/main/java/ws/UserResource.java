@@ -94,4 +94,14 @@ public class UserResource {
 		}
 	}
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("assignAdmin/{id}")
+	public Response AddAgent(@PathParam("id") int id) {
+
+	
+		return Response.status(Status.FOUND).entity(userBusiness.AssignAdmin(id)).build();
+
+	}
+	
 }
