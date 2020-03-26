@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Ad implements Serializable {
@@ -51,19 +53,19 @@ public class Ad implements Serializable {
 		
 		@Enumerated(EnumType.STRING)
 		private Adtype adtype;
-
+        @JsonIgnore
 		@ManyToOne
 		private User user;
-		
+        @JsonIgnore
 		@OneToMany(cascade = CascadeType.ALL, mappedBy="ad") 
 		private Set<Favorite> favorite;
-		
+        @JsonIgnore
 		@OneToMany(cascade = CascadeType.ALL, mappedBy="ad") 
 		private Set<Visit> visit;
-		
+        @JsonIgnore
 		@OneToMany(cascade = CascadeType.ALL, mappedBy="ad") 
 		private Set<Quote> quote;
-		
+        @JsonIgnore
 		@OneToMany(cascade = CascadeType.ALL, mappedBy="ad") 
 		private Set<Comment> comment;
 
