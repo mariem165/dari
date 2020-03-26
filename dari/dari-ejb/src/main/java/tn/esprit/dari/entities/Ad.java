@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Ad implements Serializable {
@@ -35,6 +37,8 @@ public class Ad implements Serializable {
 		
 		private String description;
 		
+		private float taux_achat;
+		
 		@Temporal(TemporalType.DATE)
 		private Date date;
 		
@@ -46,24 +50,25 @@ public class Ad implements Serializable {
 		
 		
 		
+		
 		@Enumerated(EnumType.STRING)
 		private StatusAd statusad;
 		
 		@Enumerated(EnumType.STRING)
 		private Adtype adtype;
-
+        @JsonIgnore
 		@ManyToOne
 		private User user;
-		
+        @JsonIgnore
 		@OneToMany(cascade = CascadeType.ALL, mappedBy="ad") 
 		private Set<Favorite> favorite;
-		
+        @JsonIgnore
 		@OneToMany(cascade = CascadeType.ALL, mappedBy="ad") 
 		private Set<Visit> visit;
-		
+        @JsonIgnore
 		@OneToMany(cascade = CascadeType.ALL, mappedBy="ad") 
 		private Set<Quote> quote;
-		
+        @JsonIgnore
 		@OneToMany(cascade = CascadeType.ALL, mappedBy="ad") 
 		private Set<Comment> comment;
 
@@ -143,6 +148,16 @@ public class Ad implements Serializable {
 		public void setStatusad(StatusAd statusad) {
 			this.statusad = statusad;
 		}
+		
+		
+
+		public float getTaux_achat() {
+			return taux_achat;
+		}
+
+		public void setTaux_achat(float taux_achat) {
+			this.taux_achat = taux_achat;
+		}
 
 		public Adtype getAdtype() {
 			return adtype;
@@ -191,6 +206,8 @@ public class Ad implements Serializable {
 		public void setComment(Set<Comment> comment) {
 			this.comment = comment;
 		}
+		
+		
 		
 		
 
