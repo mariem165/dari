@@ -44,6 +44,8 @@ public class Ad implements Serializable {
 		
 		private String rating;
 		
+		private float taux_achat;
+		
 		
 		
 		@Enumerated(EnumType.STRING)
@@ -192,6 +194,12 @@ public class Ad implements Serializable {
 			this.comment = comment;
 		}
 		
-		
+		public float getTaux_achat() {
+			return taux_achat;
+		}
+
+		public void setTaux_achat(float taux_achat) {
+			this.taux_achat = taux_achat;
+		}
 
 }
