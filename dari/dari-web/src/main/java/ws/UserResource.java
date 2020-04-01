@@ -103,5 +103,12 @@ public class UserResource {
 		return Response.status(Status.FOUND).entity(userBusiness.AssignAdmin(id)).build();
 
 	}
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("findByMail/{mail}")
+	public User findByMail(@PathParam("mail") String mail) {
+
+		return userBusiness.findByMail(mail);
+	}
 	
 }

@@ -19,5 +19,6 @@ public interface IUserRemote {
 	 public boolean activateAccount(String confirmationToken) ;
      public boolean changePwd(User user, String oldPwd, String newPwd) ;
      public int AssignAdmin(int id);
+     public User findByMail(String mail);
      public User loginUser(String email, String pwd);
 }

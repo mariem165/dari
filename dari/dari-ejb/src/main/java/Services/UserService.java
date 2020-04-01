@@ -135,18 +135,35 @@ public class UserService implements IUserRemote{
 	}
 
     @Override
-	public User loginUser(String email, String pwd) {
+   	public User loginUser(String email, String pwd) {
+       	if(pwd != null && email != null) {
+   		String hashedPwd = MD5Hash.getMD5Hash(pwd);
+   		Query query = entityManager.createQuery(
 
-		String hashedPwd = MD5Hash.getMD5Hash(pwd);
+   				"SELECT u FROM User u WHERE (u.email=:uname AND u.password=:upwd) ");
+   		User user = (User) query.setParameter("uname", email).setParameter("upwd", hashedPwd).getSingleResult();
+   		UserType a = user.getUsertype();
+   		this.UserLogged = user;
+   		System.out.println("*********************");
+   		return user;
+       	}
+       	return null;
+   	}
+    
+    @Override
+	public User findByMail(String mail) {
 		Query query = entityManager.createQuery(
-
-				"SELECT u FROM User u WHERE (u.email=:uname AND u.password=:upwd) ");
-		User user = (User) query.setParameter("uname", email).setParameter("upwd", hashedPwd).getSingleResult();
-		UserType a = user.getUsertype();
-		this.UserLogged = user;
-
-		return user;
-
+				"SELECT new User(u.id,u.first_name,u.last_name,u.Ntelephone,u.email,u.password,"
+				+ "u.confirmationToken,u.address,u.createdAt,u.accountState) " 
+		+ "FROM User u WHERE u.email=:param");
+		User u = null;
+		try {
+			u = (User) query.setParameter("param", mail).getSingleResult();
+			return u;
+		} catch (Exception e) {
+			System.out.println("\n\n\n\n\n\n mail Not Found | User Not Set \n\n\n\n\n\n ");
+			return null;
+		}
 	}
 
 }
