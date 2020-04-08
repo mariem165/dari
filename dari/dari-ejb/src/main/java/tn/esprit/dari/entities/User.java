@@ -59,6 +59,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 			
 			@JsonIgnore
 			@OneToMany(cascade = CascadeType.ALL, mappedBy="user") 
+			private Set<Contract> contracts;
+			
+			@JsonIgnore
+			@OneToMany(cascade = CascadeType.ALL, mappedBy="user") 
 			private Set<Notification> notification;
 			
 			@JsonIgnore
