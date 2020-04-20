@@ -336,6 +336,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 				this.Ntelephone = ntelephone;
 				this.accountState = accountState;
 			}
+
+
+			public User(String email, String password) {
+				super();
+				this.email = email;
+				this.password = password;
+			}
 			
 			
 			

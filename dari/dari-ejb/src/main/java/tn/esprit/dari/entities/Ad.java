@@ -31,6 +31,7 @@ public class Ad implements Serializable {
 		private String title;
 		
 		private String image;
+		private float price;
 		
 		
 		private String description;
@@ -190,6 +191,14 @@ public class Ad implements Serializable {
 
 		public void setComment(Set<Comment> comment) {
 			this.comment = comment;
+		}
+
+		public float getPrice() {
+			return price;
+		}
+
+		public void setPrice(float price) {
+			this.price = price;
 		}
 		
 		
