@@ -15,4 +15,5 @@ public interface IContractRemote {
 	public void deleteCn(int id);
 	public List<Contract> findAllCns();
 	public void updateCn(Contract cn , int id);
+	public boolean screenshot();
 }

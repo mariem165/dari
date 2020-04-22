@@ -21,6 +21,8 @@ import javax.persistence.ManyToOne;
 			@GeneratedValue(strategy=GenerationType.IDENTITY)
 			private int id;
 			
+			//private String subscribed_user;
+			
 			private String insurence;
 			
 
