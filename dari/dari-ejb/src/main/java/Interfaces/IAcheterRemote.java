@@ -1,15 +1,16 @@
 package Interfaces;
 
-import javax.ejb.Local;
+import javax.ejb.LocalBean;
 import javax.ejb.Remote;
 
 import tn.esprit.dari.entities.Ad;
 import tn.esprit.dari.entities.Adtype;
+import tn.esprit.dari.entities.History;
 
 
 
 @Remote
-@Local
+@LocalBean
 public interface IAcheterRemote {
-	 public Ad findByMail(String title, String location, float price ,Adtype adtype);
+	public History SaveAds(int IdAd,int idUser);
 }

@@ -20,8 +20,8 @@ import javax.persistence.ManyToOne;
 			@GeneratedValue(strategy=GenerationType.IDENTITY)
 			private int id;
 			
-			private String words;
-
+			@ManyToOne
+			private Ad Ads;			
 			@ManyToOne
 			private User user;
 			
@@ -37,12 +37,14 @@ import javax.persistence.ManyToOne;
 				this.id = id;
 			}
 
-			public String getWords() {
-				return words;
+
+
+			public Ad getAds() {
+				return Ads;
 			}
 
-			public void setWords(String words) {
-				this.words = words;
+			public void setAds(Ad ads) {
+				Ads = ads;
 			}
 
 			public User getUser() {
