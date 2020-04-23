@@ -316,6 +316,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 			public void setAccountState(AccountState accountState) {
 				this.accountState = accountState;
 			}
+
+
+			public User(int id, String confirmationToken) {
+				super();
+				this.id = id;
+				this.confirmationToken = confirmationToken;
+			}
 			
 			
 			
