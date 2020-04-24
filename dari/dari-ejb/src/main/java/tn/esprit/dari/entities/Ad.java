@@ -48,6 +48,8 @@ public class Ad implements Serializable {
 		
 		private float taux_achat;
 		
+		private float price;
+		
 		
 		
 		@Enumerated(EnumType.STRING)
@@ -204,4 +206,13 @@ public class Ad implements Serializable {
 			this.taux_achat = taux_achat;
 		}
 
+		public float getPrice() {
+			return price;
+		}
+
+		public void setPrice(float price) {
+			this.price = price;
+		}
+
+		
 }

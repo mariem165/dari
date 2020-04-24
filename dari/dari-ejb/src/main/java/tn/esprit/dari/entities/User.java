@@ -324,6 +324,29 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 				this.confirmationToken = confirmationToken;
 			}
 			
+			public User(int id, String first_name, String last_name, String ntelephone, String email, String password,
+					String confirmationToken, String address, Date createdAt,
+					AccountState accountState) {
+				super();
+				this.id = id;
+				this.first_name = first_name;
+				this.last_name = last_name;
+				this.email = email;
+				this.password = password;
+				this.confirmationToken = confirmationToken;
+				this.createdAt = createdAt;
+				this.address = address;
+				this.Ntelephone = ntelephone;
+				this.accountState = accountState;
+			}
+
+
+			public User(String email, String password) {
+				super();
+				this.email = email;
+				this.password = password;
+			}
+			
 			
 			
 			
