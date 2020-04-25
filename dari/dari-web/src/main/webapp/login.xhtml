@@ -38,7 +38,8 @@
 											<span class="input-group-text"><i
 												class="ni ni-email-83" /></span>
 										</div>
-										<input class="form-control" placeholder="Email" type="email" />
+										<input class="form-control" placeholder="email" type="email" value="#{loginBean.email}"/>
+										
 									</div>
 								</div>
 
@@ -51,7 +52,7 @@
 												class="ni ni-lock-circle-open" /></span>
 										</div>
 										<input class="form-control" placeholder="Password"
-											type="password" />
+											type="password" value="#{loginBean.pwd}" />
 									</div>
 								</div>
 
@@ -63,8 +64,8 @@
 								</div>
 
 								<div class="text-center">
-									<button type="button" class="btn btn-primary my-4">Sign
-										in</button>
+										<h:commandButton id="btn" class="btn btn-primary my-4" value="sign in" action="#{loginBean.doLogin()}" />
+									
 								</div>
 							</form>
 						</div>

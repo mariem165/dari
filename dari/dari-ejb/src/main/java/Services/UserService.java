@@ -3,7 +3,9 @@ package Services;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -18,6 +20,7 @@ import tn.esprit.dari.entities.UserType;
 
 
 @Stateful
+@LocalBean
 public class UserService implements IUserRemote{
 
 	
