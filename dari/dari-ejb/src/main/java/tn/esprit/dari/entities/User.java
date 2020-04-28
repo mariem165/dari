@@ -346,6 +346,32 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 				this.email = email;
 				this.password = password;
 			}
+
+
+			public User(String first_name, String last_name, String email, String password, String address,
+					String ntelephone, UserType usertype) {
+				super();
+				this.first_name = first_name;
+				this.last_name = last_name;
+				this.email = email;
+				this.password = password;
+				this.address = address;
+				Ntelephone = ntelephone;
+				this.usertype = usertype;
+			}
+
+
+			public User(int id, String first_name, String last_name, String email, String password, String address,
+					String ntelephone) {
+				super();
+				this.id = id;
+				this.first_name = first_name;
+				this.last_name = last_name;
+				this.email = email;
+				this.password = password;
+				this.address = address;
+				Ntelephone = ntelephone;
+			}
 			
 			
 			

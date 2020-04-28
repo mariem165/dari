@@ -3,9 +3,10 @@ package ManagedBeans;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import Services.UserService;
@@ -30,7 +31,7 @@ public class loginBean implements Serializable {
 			} 
 		else if ((user != null && user.getUsertype() == UserType.bayer ) ||(user != null && user.getUsertype() == UserType.owner )
 				||(user != null && user.getUsertype() == UserType.renter )){
-			navigateTo = "/index?faces-redirect=true"; loggedIn = true;
+			navigateTo = "index?faces-redirect=true"; loggedIn = true;
 		}
 		else {
 				FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));
