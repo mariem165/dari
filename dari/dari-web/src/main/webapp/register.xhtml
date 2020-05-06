@@ -4,6 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:p="http://primefaces.org/ui"
 	template="/template/template.xhtml">
 	<ui:param name="page_name" value="Accueil" />
 	<ui:define name="content">
@@ -22,7 +23,7 @@
 
 					<div class="card bg-secondary shadow border-0">
 
-						
+
 
 						<div class="card-body px-lg-5 py-lg-5">
 
@@ -36,20 +37,22 @@
 									<div class="input-group input-group-alternative mb-3">
 
 										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="ni ni-hat-3" /></span>
+											<span class="input-group-text"><i class="fa fa-user" /></span>
 										</div>
-										<input class="form-control" placeholder="First-name" type="text" />
+										<input class="form-control" placeholder="First-name"
+											type="text" />
 									</div>
 								</div>
-								
+
 								<div class="form-group">
 
 									<div class="input-group input-group-alternative mb-3">
 
 										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="ni ni-hat-3" /></span>
+											<span class="input-group-text"><i class="fa fa-user" /></span>
 										</div>
-										<input class="form-control" placeholder="last-name" type="text" />
+										<input class="form-control" placeholder="last-name"
+											type="text" />
 									</div>
 								</div>
 
@@ -64,13 +67,13 @@
 										<input class="form-control" placeholder="Email" type="email" />
 									</div>
 								</div>
-								
+
 								<div class="form-group">
 
 									<div class="input-group input-group-alternative mb-3">
 
 										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="ni ni-hat-3" /></span>
+											<span class="input-group-text"><i class="fa fa-phone" /></span>
 										</div>
 										<input class="form-control" placeholder="phone" type="text" />
 									</div>
@@ -80,7 +83,7 @@
 									<div class="input-group input-group-alternative mb-3">
 
 										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="ni ni-hat-3" /></span>
+											<span class="input-group-text"><i class="fa fa-home" /></span>
 										</div>
 										<input class="form-control" placeholder="address" type="text" />
 									</div>
@@ -108,13 +111,14 @@
 
 									<div class="col-12">
 
-										<div
-											class="custom-control custom-control-alternative custom-checkbox">
-											<input class="custom-control-input" id="customCheckRegister"
-												type="checkbox" /> <label class="custom-control-label"
-												for="customCheckRegister"><span>I agree with
-													the <a href="#">Privacy Policy</a>
-											</span></label>
+										<div>
+				
+
+												<p:messages showDetail="true"/>
+    <p:captcha label="Captcha"  /> <input type="submit" value="Submit" />
+										
+
+
 										</div>
 									</div>
 								</div>
@@ -130,5 +134,5 @@
 			</div>
 		</div>
 		</section>
-		</ui:define>
+	</ui:define>
 </ui:composition>
