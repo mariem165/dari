@@ -32,10 +32,7 @@ public class UserBean implements Serializable{
 	UserService userService; 
 
 
-	public void addUser() { 
-		userService.createUser(new User(first_name,last_name,email,password,address,Ntelephone , usertype));
-		}
-
+	
 
 
 	public void supprimer(int id) {
