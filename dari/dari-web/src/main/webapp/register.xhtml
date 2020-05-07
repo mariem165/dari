@@ -4,8 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	 xmlns:p="http://primefaces.org/ui"
-	template="/template/template.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 	<ui:param name="page_name" value="Accueil" />
 	<ui:define name="content">
 		<section class="section section-shaped section-lg">
@@ -40,7 +39,7 @@
 											<span class="input-group-text"><i class="fa fa-user" /></span>
 										</div>
 										<input class="form-control" placeholder="First-name"
-											type="text" />
+											type="text" value="#{userBean.first_name}" />
 									</div>
 								</div>
 
@@ -52,7 +51,7 @@
 											<span class="input-group-text"><i class="fa fa-user" /></span>
 										</div>
 										<input class="form-control" placeholder="last-name"
-											type="text" />
+											type="text"  value="#{userBean.last_name}" />
 									</div>
 								</div>
 
@@ -64,7 +63,7 @@
 											<span class="input-group-text"><i
 												class="ni ni-email-83" /></span>
 										</div>
-										<input class="form-control" placeholder="Email" type="email" />
+										<input class="form-control" placeholder="Email" type="email" value="#{userBean.email}" />
 									</div>
 								</div>
 
@@ -75,7 +74,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fa fa-phone" /></span>
 										</div>
-										<input class="form-control" placeholder="phone" type="text" />
+										<input class="form-control" placeholder="phone" type="text" value="#{userBean.ntelephone}"/>
 									</div>
 								</div>
 								<div class="form-group">
@@ -85,7 +84,22 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fa fa-home" /></span>
 										</div>
-										<input class="form-control" placeholder="address" type="text" />
+										<input class="form-control" placeholder="address" type="text" value="#{userBean.address}"/>
+									</div>
+								</div>
+								
+								<div class="form-group">
+
+									<div class="input-group input-group-alternative mb-3">
+
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fa fa-users" /></span>
+										
+										<h:selectOneMenu value="#{userBean.usertype}">
+										
+										<f:selectItems labels = "Choise types" value="#{data.userTypes}" />
+										</h:selectOneMenu>
+										</div>
 									</div>
 								</div>
 
@@ -98,7 +112,7 @@
 												class="ni ni-lock-circle-open" /></span>
 										</div>
 										<input class="form-control" placeholder="Password"
-											type="password" />
+											type="password"  value="#{userBean.password}"/>
 									</div>
 								</div>
 
@@ -112,20 +126,17 @@
 									<div class="col-12">
 
 										<div>
-				
-
-												<p:messages showDetail="true"/>
-    <p:captcha label="Captcha"  /> <input type="submit" value="Submit" />
-										
 
 
+											<p:messages showDetail="true" />
+											<p:captcha label="Captcha" />
 										</div>
 									</div>
 								</div>
 
 								<div class="text-center">
-									<button type="button" class="btn btn-primary mt-4">Create
-										account</button>
+									<h:commandButton id="btn" class="btn btn-primary mt-4" value="CREATE ACCOUNT" action="#{userBean.addUser()}"/>
+									
 								</div>
 							</form>
 						</div>
