@@ -13,7 +13,7 @@ import Services.UserService;
 import tn.esprit.dari.entities.User;
 import tn.esprit.dari.entities.UserType;
 
-@ManagedBean 
+@ManagedBean (name="loginBean")
 @SessionScoped 
 public class loginBean implements Serializable { 
 	private String email; 

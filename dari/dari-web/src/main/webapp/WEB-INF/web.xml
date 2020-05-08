@@ -16,4 +16,13 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.jsf</url-pattern>
 	</servlet-mapping>
+	<context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6LcV_vAUAAAAAL6v7mVaPJqAwFxvDOHrMq8xGFiN</param-value>
+</context-param>
+
+<context-param>
+        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+        <param-value>6LcV_vAUAAAAAPOjBYtCW9Ssnm-ye6hoiviublAD</param-value>
+</context-param>
 </web-app>
