@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="meubles" />
+	<ui:define name="content">
+	
+	<style>
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 180px;
+  height: 180px;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+div.search {
+width: 400px;
+    
+    left: 50%;
+    margin-left: 200px;
+}
+</style>
+
+		<section class="section section-shaped section-lg">
+
+		<div class="shape shape-style-1 bg-gradient-default">
+			<span /> <span /> <span /> <span /> <span /> <span /> <span />
+			<span />
+		</div>
+		</section>
+
+<div class="section features-1" >
+<div class="search"> SEARCH HERE !
+ <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+                </div> <h:inputText class="form-control" placeholder="Search" type="text">  
+                </h:inputText> </div></div>
+      <div class="container">
+        
+        <div class="row">
+        
+        
+
+
+<ui:repeat value="#{MeubleBean.list}" var="Meuble">
+
+
+        
+        
+        
+        
+          <div class="col-md-4">
+            <div class="info">
+            <div  class="gallery">
+              <h:graphicImage  value="K:/pifinal/dari/dari/dari-web/src/main/webapp/template/assets/img-meubles/#{Meuble.image}"></h:graphicImage>
+              
+              </div>
+              <h6 class="info-title text-uppercase text-warning">
+				<h:outputText value="#{Meuble.title}"></h:outputText>
+				</h6>
+              <p class="description opacity-8">
+              <h:outputText value="#{Meuble.description}"></h:outputText>
+              </p>
+              <a href="javascript:;" class="text-primary">
+              <h:outputText value="#{Meuble.prix} DT"></h:outputText>
+                <i class="ni ni-bold-right text-primary"></i>
+              </a>
+            </div>
+          </div>
+ </ui:repeat>
+
+
+        </div>
+      </div>
+    </div>
+ </ui:define>   
+ </ui:composition>

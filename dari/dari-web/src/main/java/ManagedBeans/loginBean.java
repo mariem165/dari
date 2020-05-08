@@ -19,7 +19,9 @@ public class loginBean implements Serializable {
 	private String email; 
 	private String pwd; 
 	private User user; 
-	private Boolean loggedIn; 
+	private Boolean loggedIn;
+	////zedha coca
+	static User current;
 	@EJB 
 	UserService userService; 
 
@@ -27,11 +29,15 @@ public class loginBean implements Serializable {
 		String navigateTo = "null"; 
 		user = userService.loginUser(email, pwd); 
 		if (user != null && user.getUsertype() == UserType.admin) { 
-			navigateTo = "/template/dashboard/main?faces-redirect=true"; loggedIn = true; 
+			navigateTo = "/template/dashboard/main?faces-redirect=true"; loggedIn = true;
+		////zedha coca
+			current=user;
 			} 
 		else if ((user != null && user.getUsertype() == UserType.bayer ) ||(user != null && user.getUsertype() == UserType.owner )
 				||(user != null && user.getUsertype() == UserType.renter )){
 			navigateTo = "index?faces-redirect=true"; loggedIn = true;
+			////zedha coca
+			current=user;
 		}
 		else {
 				FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));

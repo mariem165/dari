@@ -2,6 +2,7 @@ package Services;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +12,7 @@ import tn.esprit.dari.entities.Meubles;
 
 
 @Stateful
+@LocalBean
 public class MeublesServices implements IMeublesRemote {
 	
 	@PersistenceContext (unitName="dari-ejb")
