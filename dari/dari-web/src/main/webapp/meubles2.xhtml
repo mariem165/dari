@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="meubles" />
+	<ui:define name="content">
+	
+	<style>
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 180px;
+  height: 180px;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+div.search {
+width: 400px;
+    
+    left: 50%;
+    margin-left: 200px;
+}
+</style>
+
+		<section class="section section-shaped section-lg">
+
+		<div class="shape shape-style-1 bg-gradient-red">
+			<span /> <span /> <span /> <span /> <span /> <span /> <span />
+			<span />
+		</div>
+		</section>
+		<table>
+		<tr>
+		<th class="bd-example">
+		<h:graphicImage class="bd-example" value="/template/assets/img-meubles/#{MeubleBean.meu.image}">
+		</h:graphicImage>
+		</th>
+		<th>
+		<table class="table">
+		<tr>
+		 <th class="text-center"><h:outputText class="info-title text-uppercase text-warning" value="#{MeubleBean.meu.title}"></h:outputText> </th></tr>
+		<tr><th class="text-center"> <h:outputText class="description opacity-8" value="#{MeubleBean.meu.description}"></h:outputText></th></tr>
+		<tr><th class="text-center"> <h:outputText  class="text-primary" value="#{MeubleBean.meu.prix} DT"></h:outputText> </th></tr>
+		<tr><th class="text-center"> <h:form> <h:commandButton class="btn btn-default" value="purchase"> <f:param name="country" value="Greece" /></h:commandButton> </h:form> </th></tr>
+		</table>
+		</th>
+		</tr>
+	</table>
+
+
+
+ </ui:define>   
+ </ui:composition>

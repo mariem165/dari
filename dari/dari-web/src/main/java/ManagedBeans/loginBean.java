@@ -28,7 +28,9 @@ public class loginBean implements Serializable {
 	public String doLogin() { 
 		String navigateTo = "null"; 
 		user = userService.loginUser(email, pwd); 
-		if (user != null && user.getUsertype() == UserType.admin) { 
+		if (user != null && user.getUsertype() == UserType.admin) {
+			System.out.println(email);
+			System.out.println(pwd);
 			navigateTo = "/template/dashboard/main?faces-redirect=true"; loggedIn = true;
 		////zedha coca
 			current=user;
@@ -40,6 +42,8 @@ public class loginBean implements Serializable {
 			current=user;
 		}
 		else {
+			System.out.println(email);
+			System.out.println(pwd);
 				FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));
 				} 
 		return navigateTo;

@@ -39,7 +39,7 @@ width: 400px;
 
 		<section class="section section-shaped section-lg">
 
-		<div class="shape shape-style-1 bg-gradient-red">
+		<div class="shape shape-style-1 bg-gradient-default">
 			<span /> <span /> <span /> <span /> <span /> <span /> <span />
 			<span />
 		</div>
@@ -49,27 +49,16 @@ width: 400px;
 <div class="search">
  <div class="input-group mb-4">
                 <div class="input-group-prepend">
-                  
-                 <h:form id="simpleform">
-                <table>
-                <tr>
-                
-                <th><input id="reshbut" name="reshbut" class="input-group-text"></input>  </th>
-                
-                <th>
-                <h:commandButton id="submitresh" name="submitresh" class="btn btn-primary btn-sm" value="search" action="#{MeubleBean.setS()}" />
-                </th>
-                </tr>
-                </table>
-             
-                </h:form></div></div></div>
+                  <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+                </div> <h:form><h:inputText id="Searchs" class="form-control" placeholder="Search" type="text"  value="#{MeubleBean.e}">  
+                </h:inputText></h:form>  <h:form><h:commandButton id="button" class="btn btn-primary btn-sm" value="search" action="#{MeubleBean.searchM(MeubleBean.e)}" ></h:commandButton></h:form></div></div>
       <div class="container">
         
         <div class="row">
         
         
 
-<h:form>
+
 <ui:repeat value="#{MeubleBean.list}" var="Meuble">
 
 
@@ -79,28 +68,25 @@ width: 400px;
         
           <div class="col-md-4">
             <div class="info">
-            <table>
-            <tr><th><div  class="gallery">
-              <h:graphicImage  value="/template/assets/img-meubles/#{Meuble.image}"></h:graphicImage>
+            <div  class="gallery">
+              <h:graphicImage  value="K:/pifinal/dari/dari/dari-web/src/main/webapp/template/assets/img-meubles/#{Meuble.image}"></h:graphicImage>
               
-              </div></th>
-              <th><h2 class="info-title text-uppercase text-warning">
+              </div>
+              <h6 class="info-title text-uppercase text-warning">
 				<h:outputText value="#{Meuble.title}"></h:outputText>
-				</h2>
+				</h6>
               <p class="description opacity-8">
               <h:outputText value="#{Meuble.description}"></h:outputText>
               </p>
-              <h:commandLink action="#{MeubleBean.setUrl(Meuble.id)}">
+              <a href="javascript:;" class="text-primary">
               <h:outputText value="#{Meuble.prix} DT"></h:outputText>
                 <i class="ni ni-bold-right text-primary"></i>
-              </h:commandLink></th></tr>
-              </table>
+              </a>
             </div>
           </div>
- <br></br>
-<br></br> 
  </ui:repeat>
- </h:form>
+
+
         </div>
       </div>
     </div>
