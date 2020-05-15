@@ -22,6 +22,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.*;
 
 import Interfaces.IUserRemote;
+import Services.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import tn.esprit.dari.entities.AccountState;
@@ -148,7 +149,7 @@ public class UserResource {
 						role = "renter";
 					} 
 					System.out.println("++++++++++++++++");
-					String token = issueToken(Integer.toString(u.getId()));
+					String token = issueToken(Integer.toString(u.getId()), role);
 					System.out.println("--------------------------------");
 					System.out.println("token : " + token);
 					//org.json.JSONObject obj = new org.json.JSONObject();
@@ -170,12 +171,12 @@ public class UserResource {
 		return u;
 	}
 
-	private String issueToken(String username) {
+	private String issueToken(String username, String role) {
 		String keyString = "simplekey";
 		System.out.println("1111111111111");
 		Key key = new SecretKeySpec(keyString.getBytes(), 0, keyString.getBytes().length, "DES");
 		System.out.println("22222222222222"+uriInfo.getAbsolutePath().toString());
-		String jwtToken = Jwts.builder().setSubject(username)
+		String jwtToken = Jwts.builder().setSubject(username).claim("Role", role)
 				.setIssuer(uriInfo.getAbsolutePath().toString()).setIssuedAt(new Date())
 				.setExpiration(toDate(LocalDateTime.now().plusMinutes(15L))).signWith(SignatureAlgorithm.HS512, key)
 				.compact();
@@ -187,5 +188,16 @@ public class UserResource {
 		return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 	}
 
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("logout")
+	public Response logout() {
+
+		UserService.UserLogged = null;
+		issueToken(null, null);
+		return Response.status(Status.NOT_FOUND).entity(false).build();
+
+	}
 	
 }

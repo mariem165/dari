@@ -12,6 +12,7 @@ import javax.persistence.Query;
 
 
 import Interfaces.IUserRemote;
+import Utils.FTPProvider;
 import Utils.JavaMailUtil;
 import Utils.MD5Hash;
 import tn.esprit.dari.entities.AccountState;
@@ -170,4 +171,15 @@ public class UserService implements IUserRemote{
    	}
 
 
+    
+    @Override
+   	public boolean uploadProfileImage(String imgToUpload) {
+
+   		if (FTPProvider.UploadImageToFTP(imgToUpload)) {
+   			return true;
+   		} else {
+   			return false;
+   		}
+
+   	}
 }

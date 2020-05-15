@@ -21,4 +21,5 @@ public interface IUserRemote {
      public int AssignAdmin(int id);
      public User loginUser(String email, String pwd);
      public User findByMail(String mail);
+     public boolean uploadProfileImage(String imgToUpload);
 }
