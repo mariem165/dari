@@ -11,6 +11,7 @@ import tn.esprit.dari.entities.User;
 @Remote
 @LocalBean
 public interface IUserRemote {
+	
 	 public void createUser(User user);
 	 public void updateUser(User user);
 	 public void deleteUser(int id);
@@ -22,4 +23,5 @@ public interface IUserRemote {
      public User loginUser(String email, String pwd);
      public User findByMail(String mail);
      public boolean uploadProfileImage(String imgToUpload);
+     public int getNombreUser();
 }

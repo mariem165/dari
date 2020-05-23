@@ -15,6 +15,8 @@ import tn.esprit.dari.entities.UserType;
 @SessionScoped
 public class UserBean implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
+	private int id;
 	private String first_name;
 
 	private String last_name;
@@ -27,13 +29,17 @@ public class UserBean implements Serializable{
 	private User user;
 
 	private Integer UserIdToBeUpdated; 
+	private float number;
 	private List<User> listUser;
 	@EJB 
 	UserService userService; 
 
 
 	
-
+public float getNumber() {
+	number=userService.getNombreUser();
+	return(number);
+}
 
 	public void supprimer(int id) {
 
@@ -145,6 +151,24 @@ public class UserBean implements Serializable{
 
 	public void setUserIdToBeUpdated(Integer userIdToBeUpdated) {
 		UserIdToBeUpdated = userIdToBeUpdated;
+	}
+
+	
+	public void setNumber(float number) {
+		this.number = number;
+	}
+
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public UserBean() {
+		super();
 	}
 
 

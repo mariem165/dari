@@ -9,7 +9,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
+import javax.persistence.TypedQuery;
 
 import Interfaces.IUserRemote;
 import Utils.FTPProvider;
@@ -138,22 +138,20 @@ public class UserService implements IUserRemote{
 		return user.getId();
 	}
 
-    @Override
-   	public User loginUser(String email, String pwd) {
-       	if(pwd != null && email != null) {
-   		String hashedPwd = MD5Hash.getMD5Hash(pwd);
-   		Query query = entityManager.createQuery(
-
-   				"SELECT u FROM User u WHERE (u.email=:uname AND u.password=:upwd) ");
-   		User user = (User) query.setParameter("uname", email).setParameter("upwd", hashedPwd).getSingleResult();
-   		UserType a = user.getUsertype();
-   		this.UserLogged = user;
-   		System.out.println("*********************");
-   		return user;
-       	}
-       	return null;
-   	}
+	
+	  @Override
+	  public User loginUser(String email, String pwd) { if(pwd != null &&
+	  email != null) { String hashedPwd = MD5Hash.getMD5Hash(pwd); Query query =
+	  entityManager.createQuery(
+	  
+	  "SELECT u FROM User u WHERE (u.email=:uname AND u.password=:upwd) "); User
+	  user = (User) query.setParameter("uname", email).setParameter("upwd",
+	  hashedPwd).getSingleResult(); UserType a = user.getUsertype();
+	  this.UserLogged = user; System.out.println("*********************"); return
+	  user; } return null; }
+	 
     
+  
     @Override
    	public User findByMail(String mail) {
    		Query query = entityManager.createQuery(
@@ -182,4 +180,10 @@ public class UserService implements IUserRemote{
    		}
 
    	}
+    
+    @Override
+	public int getNombreUser() {
+		Query query=entityManager.createQuery("Select Count(e) from User e");
+		return ((Number) query.getSingleResult()).intValue();
+	}
 }

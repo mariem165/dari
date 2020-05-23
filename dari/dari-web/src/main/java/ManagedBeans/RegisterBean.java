@@ -24,6 +24,7 @@ public class RegisterBean implements Serializable {
 	private String address;
 	private String Ntelephone ;
 	private UserType usertype ;
+	private String profileImage;
 	private User user;
 	
 	@EJB 
@@ -31,7 +32,7 @@ public class RegisterBean implements Serializable {
 
 
 	public void addUser() { 
-		userService.createUser(new User(first_name,last_name,email,password,address,Ntelephone , usertype));
+		userService.createUser(new User(first_name,last_name,email,password,address,Ntelephone , usertype,profileImage));
 		}
 
 
@@ -130,6 +131,22 @@ public class RegisterBean implements Serializable {
 	}
 
 
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
+
+	public RegisterBean() {
+		super();
+	}
+
+
+	
 	
 
 }

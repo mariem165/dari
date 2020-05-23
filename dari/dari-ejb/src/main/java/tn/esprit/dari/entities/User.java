@@ -350,7 +350,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 			public User(String first_name, String last_name, String email, String password, String address,
-					String ntelephone , UserType usertype ) {
+					String ntelephone , UserType usertype , String profileImage ) {
 				super();
 				this.first_name = first_name;
 				this.last_name = last_name;
@@ -359,6 +359,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 				this.address = address;
 				Ntelephone = ntelephone;
 				this.usertype = usertype;
+				this.profileImage=profileImage;
 			}
 
 

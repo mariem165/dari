@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.crypto.spec.SecretKeySpec;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -95,6 +96,7 @@ public class UserResource {
 		return userBusiness.findUserById(id);
 	}
 	
+	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
@@ -131,7 +133,7 @@ public class UserResource {
 
 		try {
 			User u = authenticate(email, password);
-			//UserType aRole = u.getUsertype();
+			UserType aRole = u.getUsertype();
 			if (u != null) {
 				if (u.getAccountState() != AccountState.ACTIVATED)
 					return Response.status(Response.Status.NOT_ACCEPTABLE)
@@ -200,4 +202,11 @@ public class UserResource {
 
 	}
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("userNumber")
+	public int findUserNumber() {
+
+		return userBusiness.getNombreUser();
+	}
 }

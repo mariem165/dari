@@ -13,5 +13,7 @@ import tn.esprit.dari.entities.UserType;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
 public @interface RolesAllowed {
+	
 	UserType[] Permissions() default UserType.NoRights;
+
 }
