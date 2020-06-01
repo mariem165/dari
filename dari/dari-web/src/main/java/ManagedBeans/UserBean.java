@@ -1,9 +1,11 @@
 package ManagedBeans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -13,6 +15,7 @@ import tn.esprit.dari.entities.UserType;
 
 @ManagedBean (name="userBean")
 @SessionScoped
+@ApplicationScoped
 public class UserBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -22,7 +25,7 @@ public class UserBean implements Serializable{
 	private String last_name;
 	private String email;
 	private String password;
-
+	private Date createdAt;
 	private String address;
 	private String Ntelephone ;
 	private UserType usertype ;
@@ -165,6 +168,15 @@ public float getNumber() {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public UserBean() {
