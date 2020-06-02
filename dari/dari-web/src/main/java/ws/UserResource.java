@@ -125,6 +125,8 @@ public class UserResource {
 
 		return userBusiness.findByMail(mail);
 	}
+	
+	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("login")

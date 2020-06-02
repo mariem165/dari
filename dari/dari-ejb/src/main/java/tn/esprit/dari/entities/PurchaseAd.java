@@ -159,6 +159,20 @@ public class PurchaseAd implements Serializable{
 		this.user = user;
 	}
 
+	public PurchaseAd(int id, String title, String image, String description, Date date, float price, StatusAd statusad
+			,String location
+			) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.image = image;
+		this.description = description;
+		this.date = date;
+		this.price = price;
+		this.statusad = statusad;
+		this.location = location;
+		
+	}
 
 	public PurchaseAd() {
 		super();
