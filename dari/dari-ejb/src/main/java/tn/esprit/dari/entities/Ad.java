@@ -55,8 +55,7 @@ public class Ad implements Serializable {
 		@Enumerated(EnumType.STRING)
 		private StatusAd statusad;
 		
-		@Enumerated(EnumType.STRING)
-		private Adtype adtype;
+	
         @JsonIgnore
 		@ManyToOne
 		private User user;
@@ -150,13 +149,7 @@ public class Ad implements Serializable {
 			this.statusad = statusad;
 		}
 
-		public Adtype getAdtype() {
-			return adtype;
-		}
-
-		public void setAdtype(Adtype adtype) {
-			this.adtype = adtype;
-		}
+	
 
 		public User getUser() {
 			return user;
