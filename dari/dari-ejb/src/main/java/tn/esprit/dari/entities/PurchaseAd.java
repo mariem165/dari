@@ -33,6 +33,8 @@ public class PurchaseAd implements Serializable{
 	
 	private String description;
 	
+	private String location;
+	
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
@@ -131,6 +133,16 @@ public class PurchaseAd implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+
+	public String getLocation() {
+		return location;
+	}
+
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 
