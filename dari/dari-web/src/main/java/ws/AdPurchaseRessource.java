@@ -69,4 +69,12 @@ public class AdPurchaseRessource {
 
 		return adPurchaseBusines.findByTitle(title);
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("PostNumber")
+	public int findPostNumber() {
+
+		return adPurchaseBusines.getNombrePost();
+	}
 }

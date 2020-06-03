@@ -18,4 +18,5 @@ public interface IAdPurchaseRemote {
 	public List<PurchaseAd> findAllAdsPurchase();
 	public void updateAdPurchase(PurchaseAd ad);
 	public PurchaseAd findByTitle(String title);
+	public int getNombrePost();
 }

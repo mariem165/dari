@@ -16,6 +16,7 @@ import tn.esprit.dari.entities.PurchaseAd;
 public class BackOfficeAds implements Serializable {
 
 private List<PurchaseAd> listPurchase;
+private float number;
 	
     @EJB 
 	AdPurchaseService adPurchaseService;
@@ -23,6 +24,12 @@ private List<PurchaseAd> listPurchase;
 	public List<PurchaseAd> getAllAds() {
 		listPurchase=adPurchaseService.findAllAdsPurchase();
 		return listPurchase;
+	}
+	
+	
+	public float getNumber() {
+		number=adPurchaseService.getNombrePost();
+		return(number);
 	}
 
 	public List<PurchaseAd> getListPurchase() {
@@ -40,6 +47,12 @@ private List<PurchaseAd> listPurchase;
 	public void setAdPurchaseService(AdPurchaseService adPurchaseService) {
 		this.adPurchaseService = adPurchaseService;
 	}
+
+	
+	public void setNumber(float number) {
+		this.number = number;
+	}
+
 
 	public BackOfficeAds() {
 		super();

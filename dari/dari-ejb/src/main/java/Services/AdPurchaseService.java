@@ -79,5 +79,12 @@ public class AdPurchaseService implements IAdPurchaseRemote {
 			return null;
 		}
 	}
+	
+
+	@Override
+	public int getNombrePost() {
+		Query query = entityManager.createQuery("Select Count(e) from PurchaseAd e");
+		return ((Number) query.getSingleResult()).intValue();
+	}
 
 }
