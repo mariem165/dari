@@ -173,6 +173,19 @@ public class PurchaseAd implements Serializable{
 		this.location = location;
 		
 	}
+	
+	
+
+	public PurchaseAd(String title, String image, String description, String location, Date date, float price) {
+		super();
+		this.title = title;
+		this.image = image;
+		this.description = description;
+		this.location = location;
+		this.date = date;
+		this.price = price;
+	}
+
 
 	public PurchaseAd() {
 		super();

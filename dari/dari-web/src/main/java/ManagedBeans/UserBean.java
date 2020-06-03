@@ -53,6 +53,7 @@ public float getNumber() {
 
 	public List<User> getUsers() {
 		listUser=userService.findAllUsers();
+		System.out.println(listUser);
 		return listUser;
 	}
 

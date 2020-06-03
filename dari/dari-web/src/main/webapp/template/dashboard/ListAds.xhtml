@@ -25,42 +25,45 @@
 						<h:panelGroup columns="2">
 							<h:form>
 								<h:dataTable class="table align-items-center table-flush"
-									value="#{userBean.getUsers()}" var="user" border="0">
+									value="#{backOffice.getAllAds()}" var="ad" border="0" >
 									<h:column>
 										<f:facet name="header">
-											<h:outputText value="Id" />
+											<h:outputText value="Title" />
 										</f:facet>
-										<h:outputText value="#{user.id}" />
+										<h:outputText value="#{ad.title}" />
 									</h:column>
 									<h:column>
 										<f:facet name="header">
-											<h:outputText value="First_name" />
+											<h:outputText value="Location" />
 										</f:facet>
-										<h:outputText value="#{user.first_name}" />
+										<h:outputText value="#{ad.location}" />
 									</h:column>
 									<h:column>
 										<f:facet name="header">
-											<h:outputText value="Last_name" />
+											<h:outputText value="Price" />
 										</f:facet>
-										<h:outputText value="#{user.last_name}" />
+										<h:outputText value="#{ad.price}" />
 									</h:column>
 									<h:column>
 										<f:facet name="header">
-											<h:outputText value="Email" />
+											<h:outputText value="Image" />
 										</f:facet>
-										<h:outputText value="#{user.email}" />
+										<h:outputText value="#{ad.image}" />
 									</h:column>
 									<h:column>
 										<f:facet name="header">
 											<h:outputText value="Creation Date" />
 										</f:facet>
-										<h:outputText value="#{user.createdAt}" />
+										<h:outputText value="#{ad.date}" />
 									</h:column>
 									<h:column>
-										<f:facet name="header">
-											<h:outputText value="Role" />
-										</f:facet>
-										<h:outputText value=" #{user.usertype}" />
+										
+										<h:commandButton id="btn" class="btn btn-success mt-4"
+											value="Accept"  />
+
+										<h:commandButton id="btn2" class="btn btn-danger mt-4"
+											value="Refuse"  />
+
 									</h:column>
 								</h:dataTable>
 							</h:form>

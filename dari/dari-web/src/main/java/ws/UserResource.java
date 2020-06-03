@@ -98,11 +98,10 @@ public class UserResource {
 	
 	
 	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("{oldPwd}/{newPwd}")
-	public Response changePwd(User user, @PathParam("oldPwd") String oldPwd, @PathParam("newPwd") String newPwd) {
-		if (userBusiness.changePwd(user, oldPwd, newPwd))
+	public Response changePwd(@PathParam("oldPwd") String oldPwd, @PathParam("newPwd") String newPwd) {
+		if (userBusiness.changePwd(oldPwd, newPwd))
 			return Response.status(Status.OK).entity(true).build();
 		else {
 			return Response.status(Status.FORBIDDEN).entity(false).build();

@@ -4,7 +4,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	
 	template="/template/template.xhtml">
+	
 	<ui:param name="page_name" value="Accueil" />
 	<ui:define name="content">
 		<section class="section section-shaped section-lg">
@@ -28,7 +31,7 @@
 							<div class="text-center text-muted mb-4">
 								<small>sign in with credentials</small>
 							</div>
-							<form role="form">
+							<h:form>
 
 								<div class="form-group mb-3">
 
@@ -38,7 +41,7 @@
 											<span class="input-group-text"><i
 												class="ni ni-email-83" /></span>
 										</div>
-										<input class="form-control" placeholder="email" type="email" value="#{loginBean.email}"/>
+										<h:inputText class="form-control" pt:placeholder="email" type="email" value="#{loginBean.email}"/>
 										
 									</div>
 								</div>
@@ -51,7 +54,7 @@
 											<span class="input-group-text"><i
 												class="ni ni-lock-circle-open" /></span>
 										</div>
-										<input class="form-control" placeholder="Password"
+										<h:inputSecret class="form-control" pt:placeholder="Password"
 											type="password" value="#{loginBean.pwd}" />
 									</div>
 								</div>
@@ -64,10 +67,10 @@
 								</div>
 
 								<div class="text-center">
-										<h:commandButton id="btn" class="btn btn-primary my-4" value="sign in" action="#{loginBean.doLogin()}" />
+										<h:commandButton class="btn btn-primary my-4" value="signin" action="#{loginBean.doLogin}" />
 									
 								</div>
-							</form>
+							</h:form>
 						</div>
 					</div>
 

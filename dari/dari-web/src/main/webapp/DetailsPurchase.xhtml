@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	 template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+	
+	<div class="wrapper">
+    <div class="page-header header-filter page-header-small skew-separator skew-mini">
+      <div class="page-header-image" style="background-image: url('./assets/img/pages/boxed-water.jpg');"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 col-md-7 mr-auto text-left">
+            <h1 class="title text-white">Our products</h1>
+            
+            <h4 class="category text-white opacity-8">This is the best way to find your favorite stuff</h4>
+          </div>
+        </div>
+      </div>
+      <!-- SVG separator -->
+      <div class="separator separator-bottom separator-skew">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </div>
+    <div class="section section-item">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-12 ">
+            <div id="productCarousel" class="carousel slide" data-ride="carousel" data-interval="8000">
+              <ol class="carousel-indicators mt-5">
+                <li data-target="#productCarousel" data-slide-to="0" class=""></li>
+                <li data-target="#productCarousel" data-slide-to="1" class=""></li>
+                <li data-target="#productCarousel" data-slide-to="2" class="active"></li>
+              </ol>
+              <div class="carousel-inner" role="listbox">
+                <div class="carousel-item">
+                  <img class="d-block" src="./assets/img/pages/shirt.png" alt="First slide"/>
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block" src="./assets/img/pages/shorts.png" alt="Second slide"/>
+                </div>
+                <div class="carousel-item active">
+                  <img class="d-block" src="./assets/img/pages/tshirt.png" alt="Third slide"/>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+                <button type="button" class="btn btn-warning btn-icon btn-round btn-sm" name="button">
+                  <i class="ni ni-bold-left"></i>
+                </button>
+              </a>
+              <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+                <button type="button" class="btn btn-warning btn-icon btn-round btn-sm" name="button">
+                  <i class="ni ni-bold-right"></i>
+                </button>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12 mx-auto">
+            <h2 class="title">Givenchy</h2>
+            <div class="stats">
+              <div class="stars text-warning">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <p class="d-inline">(76 customer reviews)</p>
+              </div>
+            </div>
+            <br>
+            <h2 class="main-price">$3,390</h2>
+            <h6 class="category">Description</h6>
+            <p class="description"> Eres' daring 'Grigri Fortune' swimsuit has the fit and coverage of a bikini in a one-piece silhouette. This fuchsia style is crafted from the label's sculpting peau douce fabric and has flattering cutouts through the torso and
+             back. Wear yours with mirrored sunglasses on vacation.</p>
+            </br>
+            <div class="row pick-size">
+              <div class="col-lg-4 col-md-4">
+                <label>Quantity</label>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <button id="down" class="btn btn-outline-warning btn-round" onclick="down('0')"><i class="ni ni-fat-delete"></i></button>
+                  </div>
+                  <input type="text" id="myNumber" class="form-control input-number" value="1"/>
+                  <div class="input-group-btn">
+                    <button id="up" class="btn btn-outline-warning btn-round" onclick="up('100')"><i class="ni ni-fat-add"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <label>Select color</label>
+                <select class="form-control" data-trigger="" name="choices-single-default" id="choices-single-default">
+                  <option value="1" disabled="" selected="">Choose Color</option>
+                  <option value="2">Black</option>
+                  <option value="3">Gray</option>
+                  <option value="4">White</option>
+                </select>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <label>Select size</label>
+                <select class="form-control form-control-sm" data-trigger="" name="choices-single-default" id="choices-single-default">
+                  <option disabled="" selected="">Choose size </option>
+                  <option value="0">XS </option>
+                  <option value="1">S </option>
+                  <option value="2">M</option>
+                  <option value="3">L</option>
+                  <option value="4">XL</option>
+                </select>
+              </div>
+            </div>
+         
+            <div class="row justify-content-start">
+              <button class="btn btn-warning ml-3">Add to Cart &nbsp;<i class="ni ni-cart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+   
+    <div class="section related-products bg-secondary skew-separator skew-top">
+      <div class="container">
+        <div class="col-md-8">
+          <h2 class="title">You may also like </h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="card card-product">
+              <div class="card-image">
+                <a href="#pablo">
+                  <img class="img rounded" src="./assets/img/pages/tshirt.png"/>
+                </a>
+              </div>
+              <div class="card-body">
+                <h6 class="category text-warning">Trending</h6>
+                <h4 class="card-title">
+                  <a href="javascript:;" class="card-link">Gucci</a>
+                </h4>
+                <div class="card-description opacity-8 mt-2">
+                  Dolce &amp; Gabbana's 'Greta' tote has been crafted in Italy from hard-wearing red textured-leather.
+                </div>
+                <div class="card-footer">
+                  <div class="price-container">
+                    <span class="price">€1,459</span>
+                  </div>
+                  <button class="btn btn-simple btn-warning btn-icon-only btn-sm btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
+                    <i class="ni ni-favourite-28"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="card card-product">
+              <div class="card-image">
+                <a href="#pablo">
+                  <img class="img rounded" src="./assets/img/pages/shorts.png"/>
+                </a>
+              </div>
+              <div class="card-body">
+                <h6 class="category text-warning">Popular</h6>
+                <h4 class="card-title">
+                  <a href="javascript:;" class="card-link">Balmain</a>
+                </h4>
+                <div class="card-description opacity-8 mt-2">
+                  Balmain's mid-rise skinny jeans are cut with stretch to ensure they retain their second-skin fit but move comfortably.
+                </div>
+                <div class="card-footer">
+                  <div class="price-container">
+                    <span class="price">€459</span>
+                  </div>
+                  <button class="btn btn-simple btn-warning btn-icon-only btn-sm btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
+                    <i class="ni ni-favourite-28"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="card card-product">
+              <div class="card-image">
+                <a href="#pablo">
+                  <img class="img rounded" src="./assets/img/pages/shirt.png"/>
+                </a>
+              </div>
+              <div class="card-body">
+                <h6 class="category text-warning">Popular</h6>
+                <h4 class="card-title">
+                  <a href="javascript:;" class="card-link">Balenciaga</a>
+                </h4>
+                <div class="card-description opacity-8 mt-2">
+                  Balenciaga's black textured-leather wallet is finished with the label's iconic 'Giant' studs. This is where you can...
+                </div>
+                <div class="card-footer">
+                  <div class="price-container">
+                    <span class="price">€559</span>
+                  </div>
+                  <button class="btn btn-simple btn-warning btn-icon-only btn-sm btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
+                    <i class="ni ni-favourite-28"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="card card-product">
+              <div class="card-image">
+                <a href="#pablo">
+                  <img class="img rounded" src="./assets/img/pages/jeans.png"/>
+                </a>
+              </div>
+              <div class="card-body">
+                <h6 class="category text-warning">Trending</h6>
+                <h4 class="card-title">
+                  <a href="javascript:;" class="card-link">D &amp; G</a>
+                </h4>
+                <div class="card-description opacity-8 mt-2">
+                  Dolce &amp; Gabbana's 'Greta' tote has been crafted in Italy from hard-wearing red textured-leather.
+                </div>
+                <div class="card-footer">
+                  <div class="price-container">
+                    <span class="price"> € 1,359</span>
+                  </div>
+                  <button class="btn btn-simple btn-warning btn-icon-only btn-sm btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
+                    <i class="ni ni-favourite-28"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </div>	
+	
+	</ui:define>
+</ui:composition>

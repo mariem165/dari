@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import Interfaces.IAdPurchaseRemote;
-
+import Services.UserService;
 import tn.esprit.dari.entities.PurchaseAd;
 import tn.esprit.dari.entities.User;
 
@@ -32,6 +32,7 @@ public class AdPurchaseRessource {
 	@Path("ajout")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createAdPurchase(PurchaseAd ad) {
+		ad.setUser(UserService.UserLogged);
 		adPurchaseBusines.createAdPurchase(ad);
 		return Response.status(Status.OK).entity("ok").build();
 	}
