@@ -35,6 +35,21 @@ width: 400px;
     left: 50%;
     margin-left: 200px;
 }
+.comment-wrapper .panel-body {
+    max-height:650px;
+    overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}
 </style>
 
 		<section class="section section-shaped section-lg">
@@ -54,14 +69,65 @@ width: 400px;
 		<table class="table">
 		<tr>
 		 <th class="text-center"><h:outputText class="info-title text-uppercase text-warning" value="#{MeubleBean.meu.title}"></h:outputText> </th></tr>
-		<tr><th class="text-center"> <h:outputText class="description opacity-8" value="#{MeubleBean.meu.description}"></h:outputText></th></tr>
+		<tr><th class="text-center"> <h:outputText id="reprep" name="reprep" class="description opacity-8" value="#{MeubleBean.meu.description}"></h:outputText></th></tr>
 		<tr><th class="text-center"> <h:outputText  class="text-primary" value="#{MeubleBean.meu.prix} DT"></h:outputText> </th></tr>
 		<tr><th class="text-center"> <h:form> <h:commandButton class="btn btn-default" value="purchase"> <f:param name="country" value="Greece" /></h:commandButton> </h:form> </th></tr>
 		</table>
 		</th>
+		
 		</tr>
 	</table>
+	<div><h:form><h:commandButton class="btn btn-outline-danger" value="report" action="#{MeubleBean.reportButton()}"></h:commandButton></h:form></div>
+<div></div>
 
+
+
+<!--  second item -->
+<div class="alert alert-default">
+<div class="row bootstrap snippets">
+    <div class="col-md-6 col-md-offset-2 col-sm-12">
+        <div class="comment-wrapper">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Comment here !
+                </div>
+                <div class="panel-body">
+                   <h:form> <h:inputText class="form-control" placeholder="write a comment..." rows="3" value="#{MeubleBean.content}"></h:inputText> 
+                    <br></br>
+                    
+                    <h:commandButton class="btn btn-info pull-right" value="POST" action="#{MeubleBean.PostComment}"/></h:form>
+                    <h:form><ui:repeat value="#{MeubleBean.listcom}" var="Comment">
+                    <div class="clearfix"></div>
+                    <hr/>
+                    <ul class="media-list">
+                        <li class="media">
+                            <a href="#" class="pull-left">
+                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle"/>
+                            </a>
+                            <div class="media-body">
+                                <span class="text-muted pull-right">
+                                    
+                                    <h:outputText class="text-muted" value="#{Comment.time}" >
+    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+</h:outputText>
+                                </span>
+                                <strong class="text-success">@sala7_Bensala7</strong>
+                                
+<h:outputText value="   #{Comment.content}"></h:outputText>
+
+                            </div>
+                        </li>
+                        
+                    </ul>
+                    </ui:repeat></h:form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+<!--  -->
 
 
  </ui:define>   

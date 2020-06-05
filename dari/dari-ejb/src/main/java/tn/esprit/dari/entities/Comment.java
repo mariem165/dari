@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,6 +34,15 @@ import javax.persistence.TemporalType;
 			@ManyToOne
 			private Ad ad;
 			
+			@ManyToOne
+			private Meubles meubles;
+			
+			public Meubles getMeubles() {
+				return meubles;
+			}
+			public void setMeubles(Meubles meubles) {
+				this.meubles = meubles;
+			}
 			public Comment(int id, String content, Time time) {
 				super();
 				this.id = id;

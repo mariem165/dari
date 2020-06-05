@@ -1,6 +1,7 @@
 package Services;
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import Interfaces.ICommentRemote;
 import tn.esprit.dari.entities.Comment;
 @Stateful
+@LocalBean
 public class CommentService implements ICommentRemote {
 
 		

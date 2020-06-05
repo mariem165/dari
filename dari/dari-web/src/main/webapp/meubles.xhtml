@@ -91,6 +91,12 @@ width: 400px;
               <h:outputText value="#{Meuble.description}"></h:outputText>
               </p>
               <h:commandLink action="#{MeubleBean.setUrl(Meuble.id)}">
+              <f:metadata>
+                  <f:param name="title" value="#{Meuble.title}" />
+              	  <f:param name="desc" value="#{Meuble.description}" /> 
+              </f:metadata>
+              
+              
               <h:outputText value="#{Meuble.prix} DT"></h:outputText>
                 <i class="ni ni-bold-right text-primary"></i>
               </h:commandLink></th></tr>

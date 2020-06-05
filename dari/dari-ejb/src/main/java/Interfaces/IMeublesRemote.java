@@ -2,8 +2,12 @@ package Interfaces;
 
 import java.util.List;
 
-import tn.esprit.dari.entities.Meubles;
+import javax.ejb.LocalBean;
+import javax.ejb.Remote;
 
+import tn.esprit.dari.entities.Meubles;
+@Remote
+@LocalBean
 public interface IMeublesRemote {
 	public void CreateMeubles (Meubles M);
 	public void DeleteMeubles (Meubles M);

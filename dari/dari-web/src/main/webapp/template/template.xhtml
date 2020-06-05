@@ -30,9 +30,15 @@
 <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
 <!-- CSS Files -->
 <link href="assets/css/argon-design-system.css?v=1.2.0" rel="stylesheet" />
+<h:outputScript library="primefaces" name="jquery/jquery.js"  />
+<h:outputScript library="primefaces" name="jquery/jquery-plugins.js"  />
 </h:head>
 
 <body class="index-page">
+<f:metadata>
+          <f:event type="preRenderView" listener="#{vpnProtection.onPageLoad}" />
+          <f:viewParam name="action" value="#{vpnProtection.RED}"/>
+      </f:metadata>
 	<!-- Navbar -->
 	<ui:include src="/template/header.xhtml" />
 	<!--   Core JS Files   -->

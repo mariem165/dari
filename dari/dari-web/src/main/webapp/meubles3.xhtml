@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="meubles" />
+	<ui:define name="content">
+	
+	<style>
+div.c {
+ 
+  right: 150 px;
+  width: 40%;
+  
+  
+} 
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 180px;
+  height: 180px;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+div.search {
+width: 400px;
+    
+    left: 50%;
+    margin-left: 200px;
+}
+div.b {
+  height : 100%;
+  width: 100%;
+} 
+</style>
+
+		<section class="section section-shaped section-lg">
+
+		<div class="shape shape-style-1 bg-gradient-red">
+			<span /> <span /> <span /> <span /> <span /> <span /> <span />
+			<span />
+		</div>
+		</section>
+		
+		
+<table > <tr><th ><h4>Show us what you have !</h4></th><th></th></tr>	<tr> <th style="width: 30%;">	
+		<div class="b">
+	 <h:form enctype="multipart/form-data"  prependId="false">
+	 <div class="form-group">
+<h:outputText value="File: "></h:outputText>
+<h:inputFile value="#{fileupload.uploadedFile}" required="true" class="form-control" /></div>
+
+<div class="form-group">
+<h:outputText value="Article name"></h:outputText>
+<h:inputText value="#{fileupload.tit}" required="true" class="form-control" /></div>
+
+<div class="form-group">
+<h:outputText value="Description"></h:outputText>
+<h:inputTextarea id="meubleD" name="meubleD" value="#{fileupload.desc}" required="true" class="form-control"></h:inputTextarea>
+</div>
+<div class="form-group">
+<h:outputText value="Article price"></h:outputText>
+<input type="number" id="tentacles" name="tentacles"
+       min="0" max="1000000" class="form-control"/>
+       
+  </div>  
+  <div><h:commandButton value="Save" type="submit" action="#{fileupload.saveFile}" class="btn btn-outline-danger"></h:commandButton></div>   
+</h:form>
+</div></th> <th style="width: 20%;"></th> <th style="width: 20%;"></th>
+<th >
+<div><h1>upload your article here ! But ...</h1></div>
+<div >
+<h6>No one likes to be spammed, including us</h6>
+<p>
+Any type of fake posts, swear words, curses, harassment, sexism, racism ... is definitely unaccepted in dari.tn .
+posts will be immediately reviewed and any type of the behaviour mentioned above will expose it's owner to bans and restrictions.
+</p>
+
+</div></th>
+</tr>
+</table>
+
+
+
+
+
+ </ui:define>   
+ </ui:composition>
