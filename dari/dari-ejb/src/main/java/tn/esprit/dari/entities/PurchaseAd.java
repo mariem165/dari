@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -35,6 +36,26 @@ public class PurchaseAd implements Serializable{
 	
 	private String location;
 	
+	private int room;
+	private double lat;
+    private double lng;
+
+	public double getLat() {
+		return lat;
+	}
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+	public double getLng() {
+		return lng;
+	}
+
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+	private float area;
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
@@ -49,6 +70,8 @@ public class PurchaseAd implements Serializable{
 	 @JsonIgnore
 		@ManyToOne
 		private User user;
+	 
+
 
 
 	public int getId() {
@@ -145,6 +168,27 @@ public class PurchaseAd implements Serializable{
 		this.location = location;
 	}
 
+	
+
+	public int getRoom() {
+		return room;
+	}
+
+
+	public void setRoom(int room) {
+		this.room = room;
+	}
+
+
+	public float getArea() {
+		return area;
+	}
+
+
+	public void setArea(float area) {
+		this.area = area;
+	}
+
 
 	public PurchaseAd(int id, String title, String image, String description, Date date, float price, StatusAd statusad,
 			User user) {
@@ -176,8 +220,24 @@ public class PurchaseAd implements Serializable{
 	
 	
 
-	public PurchaseAd(String title, String image, String description, String location, Date date, float price) {
+	public PurchaseAd(String title, String image, String description, String location, Date date, float price , int room , float area, double lat,double lng) {
 		super();
+		this.title = title;
+		this.image = image;
+		this.description = description;
+		this.location = location;
+		this.date = date;
+		this.price = price;
+		this.room = room;
+		this.area = area;
+		this.lat =lat;
+		this.lng=lng;
+		
+	}
+
+	public PurchaseAd(int id,String title, String image, String description, String location, Date date, float price) {
+		super();
+		this.id = id;
 		this.title = title;
 		this.image = image;
 		this.description = description;

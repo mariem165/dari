@@ -7,6 +7,7 @@ import javax.ejb.Remote;
 
 
 import tn.esprit.dari.entities.PurchaseAd;
+import tn.esprit.dari.entities.User;
 
 
 @Remote
@@ -19,4 +20,9 @@ public interface IAdPurchaseRemote {
 	public void updateAdPurchase(PurchaseAd ad);
 	public PurchaseAd findByTitle(String title);
 	public int getNombrePost();
+	List<PurchaseAd> findByUserAd();
+	public int Accept(int id);
+	public int Refuse(int id);
+	public PurchaseAd findPurchaseById(int id);
+	//String uploadImage(String urlFile);
 }

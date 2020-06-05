@@ -43,10 +43,10 @@ import Services.AdPurchaseService;
 import Utils.FileUploadServlet;
 import tn.esprit.dari.entities.PurchaseAd;
 
-@ManagedBean(name = "purchaseBean")
+@ManagedBean(name = "DetailsBean")
 @Named
-@SessionScoped
-public class PurchaseAdAjout implements Serializable {
+@RequestScoped
+public class DetailsBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String title;
@@ -92,16 +92,8 @@ public class PurchaseAdAjout implements Serializable {
 		this.lng = lng;
 	}
 
-	public tn.esprit.dari.entities.LatLng getPos() {
-		return pos;
-	}
 
-	public void setPos(tn.esprit.dari.entities.LatLng pos) {
-		PurchaseAdAjout.pos = pos;
-	}
 
-	private Integer PurchaseIdToBeUpdated;
-    private MapModel simpleModel;
 
 	@EJB
 	AdPurchaseService adPurchaseService;
@@ -109,42 +101,8 @@ public class PurchaseAdAjout implements Serializable {
 	@PostConstruct
 	public void init() {
 		emptyModel = new DefaultMapModel();
-
-	}
-    public MapModel getSimpleModel() {
-        return simpleModel;
-    }
-	public void onMarkerSelect(OverlaySelectEvent event) {
-		Marker selectedMarker = (Marker) event.getOverlay();
-		System.out.println(selectedMarker);
 	}
 
-	public void createAdsPurchase() throws IOException, ServletException {
-
-		System.out.println("poss" + pos);
-		adPurchaseService.createAdPurchase(new PurchaseAd(title, files.getFileName(), description, location, date,
-				price, room, area, pos.getLat(), pos.getLng()));
-		doPost();
-		this.setTitle(null);
-	}
-
-	public void addMarker() {
-		Marker marker = new Marker(new LatLng(lat, lng), title);
-		emptyModel.addOverlay(marker);
-		System.out.println(lat);
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Added", "Lat:" + lat + ", Lng:" + lng));
-	}
-
-	public void onPointSelect(PointSelectEvent event) {
-		System.out.println("Add marker title: " + event.getLatLng());
-		LatLng latlng = event.getLatLng();
-		pos.setLng(event.getLatLng().getLng());
-		pos.setLat(event.getLatLng().getLat());
-		emptyModel = new DefaultMapModel();
-		Marker marker = new Marker(latlng, "your house");
-		emptyModel.addOverlay(marker);
-	}
 
 	public String AfficherUnProduit(PurchaseAd m1) {
 		String navigateTo = "null";
@@ -157,10 +115,6 @@ public class PurchaseAdAjout implements Serializable {
 		this.setLocation(m1.getLocation());
 
 		this.setDescription(m1.getDescription());
-        simpleModel = new DefaultMapModel();
-        LatLng coord4 = new LatLng(m1.getLat(), m1.getLng());
-System.out.println(coord4);
-        simpleModel.addOverlay(new Marker(coord4, "Kaleici"));
 
 		// this.setProjects(m1.getProject());
 		navigateTo = "/DetailsPurchase?faces-redirect=true";
@@ -182,60 +136,6 @@ System.out.println(coord4);
 
 	}
 
-	private UploadedFile files;
-
-	public UploadedFile getFiles() {
-		return files;
-	}
-
-	public void setFiles(UploadedFile files) {
-		this.files = files;
-	}
-
-	public void doPost() throws IOException, ServletException {
-
-		System.out.println(files.getFileName());
-
-		System.out.println(files);
-		String fileName = files.getFileName();
-
-		if (fileName.endsWith(".jpg") || fileName.endsWith(".png")) {
-
-			InputStream fileInputStream = files.getInputStream();
-
-			String region = "us-east-1";
-			String bucketName = "mariempidev";
-			String subdirectory = "images/";
-
-			// AWS Access Key ID and Secret Access Key
-			BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJERQSMWBUOBUGXJQ",
-					"tfzn2CeRpISvoNPqXbf1wI3QhoFSlpXxQ7U04G6n");
-
-			AmazonS3 s3client = AmazonS3ClientBuilder.standard().withRegion(region)
-					.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
-
-			// Specify the file's size
-			ObjectMetadata metadata = new ObjectMetadata();
-			metadata.setContentLength(files.getSize());
-
-			// Create the upload request, giving it a bucket name, subdirectory, filename,
-			// input stream, and metadata
-			PutObjectRequest uploadRequest = new PutObjectRequest(bucketName, subdirectory + fileName, fileInputStream,
-					metadata);
-			// Make it public so we can use it as a public URL on the internet
-			uploadRequest.setCannedAcl(CannedAccessControlList.PublicRead);
-
-			// Upload the file. This can take a while for big files!
-			s3client.putObject(uploadRequest);
-
-			// Create a URL using the bucket, subdirectory, and file name
-			String fileUrl = "http://s3.amazonaws.com/" + bucketName + "/" + subdirectory + "/" + fileName;
-
-		} else {
-			System.out.println("error upload");
-		}
-
-	}
 
 	public String getTitle() {
 		return title;
@@ -340,32 +240,10 @@ System.out.println(coord4);
 		return serialVersionUID;
 	}
 
-	public PurchaseAdAjout() {
+	public DetailsBean() {
 		super();
 	}
 
-	public PurchaseAd getPurchaseAd() {
-		return PurchaseAd;
-	}
 
-	public void setPurchaseAd(PurchaseAd purchaseAd) {
-		PurchaseAd = purchaseAd;
-	}
-
-	public List<PurchaseAd> getList() {
-		return list;
-	}
-
-	public void setList(List<PurchaseAd> list) {
-		this.list = list;
-	}
-
-	public Integer getPurchaseIdToBeUpdated() {
-		return PurchaseIdToBeUpdated;
-	}
-
-	public void setPurchaseIdToBeUpdated(Integer purchaseIdToBeUpdated) {
-		PurchaseIdToBeUpdated = purchaseIdToBeUpdated;
-	}
 
 }

@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import Interfaces.IUserRemote;
-import Utils.FTPProvider;
+import Utils.FileUploadServlet;
 import Utils.JavaMailUtil;
 import Utils.MD5Hash;
 import tn.esprit.dari.entities.AccountState;
@@ -167,20 +167,17 @@ public class UserService implements IUserRemote {
 		}
 	}
 
-	@Override
-	public boolean uploadProfileImage(String imgToUpload) {
 
-		if (FTPProvider.UploadImageToFTP(imgToUpload)) {
-			return true;
-		} else {
-			return false;
-		}
-
-	}
 
 	@Override
 	public int getNombreUser() {
 		Query query = entityManager.createQuery("Select Count(e) from User e");
 		return ((Number) query.getSingleResult()).intValue();
+	}
+
+	@Override
+	public boolean uploadProfileImage(String imgToUpload) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

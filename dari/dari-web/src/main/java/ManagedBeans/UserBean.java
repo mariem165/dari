@@ -10,12 +10,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import Services.UserService;
+import tn.esprit.dari.entities.PurchaseAd;
 import tn.esprit.dari.entities.User;
 import tn.esprit.dari.entities.UserType;
 
 @ManagedBean (name="userBean")
 @SessionScoped
-@ApplicationScoped
+
 public class UserBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -34,6 +35,8 @@ public class UserBean implements Serializable{
 	private Integer UserIdToBeUpdated; 
 	private float number;
 	private List<User> listUser;
+	
+	public static User Iuser = new User();
 	@EJB 
 	UserService userService; 
 
@@ -62,18 +65,20 @@ public float getNumber() {
 		return user;
 	}
 
-	public void displayUser(User user) {
-		this.setFirst_name(user.getFirst_name());
-		this.setLast_name(user.getLast_name());
-		this.setEmail(user.getEmail());
-		this.setAddress(user.getAddress());
-		this.setNtelephone(user.getNtelephone());
-		this.setPassword(user.getPassword());
-		this.setUserIdToBeUpdated(user.getId());
+	public String displayUser(User user) {
+		UserBean.Iuser.setFirst_name(user.getFirst_name());
+		UserBean.Iuser.setLast_name(user.getLast_name());
+		UserBean.Iuser.setEmail(user.getEmail());
+		UserBean.Iuser.setAddress(user.getAddress());
+		UserBean.Iuser.setNtelephone(user.getNtelephone());
+		UserBean.Iuser.setPassword(user.getPassword());
+		System.out.println();
+		String navigateTo = "UpdateUser?faces-redirect=true";
+		return navigateTo;
 	}
 
 	public void updateUser() { 
-		userService.updateUser(new User(UserIdToBeUpdated, first_name, last_name, email, password, Ntelephone, address)); } 
+		userService.updateUser(Iuser); } 
 
 
 	public User getUserByMail(String mail) {

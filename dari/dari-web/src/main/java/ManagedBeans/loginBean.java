@@ -30,7 +30,8 @@ public class loginBean implements Serializable {
 		String navigateTo = "null"; 
 		user = userService.loginUser(email, pwd); 
 		if (user != null && user.getUsertype() == UserType.admin) {
-			navigateTo = "/template/dashboard/main?faces-redirect=true"; loggedIn = true;
+			navigateTo = "/template/dashboard/main?faces-redirect=true";
+			loggedIn = true;
 			} 
 		else if ((user != null && user.getUsertype() == UserType.bayer ) ||(user != null && user.getUsertype() == UserType.owner )
 				||(user != null && user.getUsertype() == UserType.renter )){

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+
+		<div class="section team-4 bg-default">
+			<div class="container">
+				<div class="row">
+				<h:form>
+					<div class="team-2">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-8 mx-auto text-center mb-5">
+									<h3 class="display-3"></h3>
+									<h4 class="lead">.</h4>
+								</div>
+							</div>
+							<div class="row">
+								<ui:repeat var="item" value="#{purchaseBean.getByUserId()}">
+
+									<div class="col-lg-4 col-md-6">
+										<div class="card card-profile" data-image="profile-image">
+											<div class="card-header">
+												<div class="card-image">
+													<div class="dropdown">
+														
+														
+													</div>
+													<a href="javascript:;"> <img class="img rounded"
+														src="./assets/img/faces/ali-pazani.jpg" />
+													</a>
+												</div>
+											</div>
+											<div class="card-body pt-0">
+												<h4 href="" class="display-4 mb-0">#{item.title}</h4>
+												<p class="lead">#{item.location}</p>
+												<div class="table-responsive">
+													<ul class="list-unstyled ">
+														<li class="py-1">
+															<div class="d-flex align-items-center">
+																<div>
+																	<div class="badge badge-circle badge-info mr-3">
+																		<i class="ni ni-atom"></i>
+																	</div>
+																</div>
+																<div>
+																	<h6 class="mb-1">Keen on great design</h6>
+																</div>
+															</div>
+														</li>
+														<li class="py-1">
+															<div class="d-flex align-items-center">
+																<div>
+																	<div class="badge badge-circle badge-success mr-3">
+																		<i class="ni ni-user-run"></i>
+																	</div>
+																</div>
+																<div>
+																	<h6 class="mb-1">Outdors lover</h6>
+																</div>
+															</div>
+														</li>
+														<li class="py-1">
+															<div class="d-flex align-items-center">
+																<div>
+																	<div class="badge badge-circle badge-danger mr-3">
+																		<i class="ni ni-chart-bar-32"></i>
+																	</div>
+																</div>
+																<div>
+																	<h6 class="mb-1">Super friendly support team</h6>
+																</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+												<h:commandButton styleClass="btn btn-info btn-round btn-sm"
+													action="#{purchaseBean.displayPurchase(item)}"
+													value="Update" />
+													<h:commandButton styleClass="btn btn-danger btn-round btn-sm"
+													action="#{purchaseBean.supprimer(item.id)}"
+													value="Delete" />
+											</div>
+										</div>
+									</div>
+								</ui:repeat>
+
+							</div>
+						</div>
+					</div>
+</h:form>				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
