@@ -4,7 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	 template="/template/template.xhtml">
 	<ui:param name="page_name" value="Accueil" />
 	<ui:define name="content">
 		<section class="section section-shaped section-lg">
@@ -29,7 +31,7 @@
 							<div class="text-center text-muted mb-4">
 								<small>sign up </small>
 							</div>
-							<form role="form">
+							<h:form role="form">
 
 								<div class="form-group">
 
@@ -38,7 +40,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fa fa-user" /></span>
 										</div>
-										<input class="form-control" placeholder="First-name"
+										<h:inputText class="form-control" pt:placeholder="First-name"
 											type="text" value="#{registerBean.first_name}" />
 									</div>
 								</div>
@@ -50,7 +52,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fa fa-user" /></span>
 										</div>
-										<input class="form-control" placeholder="last-name"
+										<h:inputText class="form-control" pt:placeholder="last-name"
 											type="text"  value="#{registerBean.last_name}" />
 									</div>
 								</div>
@@ -63,7 +65,7 @@
 											<span class="input-group-text"><i
 												class="ni ni-email-83" /></span>
 										</div>
-										<input class="form-control" placeholder="Email" type="email" value="#{registerBean.email}" />
+										<h:inputText class="form-control" pt:placeholder="Email" type="email" value="#{registerBean.email}" />
 									</div>
 								</div>
 
@@ -74,7 +76,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fa fa-phone" /></span>
 										</div>
-										<input class="form-control" placeholder="phone" type="text" value="#{registerBean.ntelephone}"/>
+										<h:inputText class="form-control" pt:placeholder="phone" type="text" value="#{registerBean.ntelephone}"/>
 									</div>
 								</div>
 								<div class="form-group">
@@ -84,7 +86,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fa fa-home" /></span>
 										</div>
-										<input class="form-control" placeholder="address" type="text" value="#{registerBean.address}"/>
+										<h:inputText class="form-control" pt:placeholder="address" type="text" value="#{registerBean.address}"/>
 									</div>
 								</div>
 								
@@ -111,8 +113,19 @@
 											<span class="input-group-text"><i
 												class="ni ni-lock-circle-open" /></span>
 										</div>
-										<input class="form-control" placeholder="Password"
+										<h:inputSecret class="form-control" pt:placeholder="Password"
 											type="password"  value="#{registerBean.password}"/>
+									</div>
+								</div>
+									<div class="form-group">
+
+									<div class="input-group input-group-alternative mb-3">
+
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fas fa-image"/></span>
+										</div>
+										<h:inputText class="form-control" pt:placeholder="profile image" type="file" value="#{registerBean.profileImage}"/>
+									 <!-- <h:graphicImage placeholder="profile image" value="/template/assets/img-meubles/#{registerBean.profileImage}"></h:graphicImage> -->
 									</div>
 								</div>
 
@@ -135,10 +148,10 @@
 								</div>
 
 								<div class="text-center">
-									<h:commandButton id="btn" class="btn btn-primary mt-4" value="CREATE ACCOUNT" action="#{registerBean.addUser()}"/>
+									<h:commandButton id="btn" class="btn btn-primary mt-4" value="CREATE ACCOUNT" action="#{registerBean.addUser}"/>
 									
 								</div>
-							</form>
+							</h:form>
 						</div>
 					</div>
 				</div>

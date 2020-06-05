@@ -1,10 +1,23 @@
 package ManagedBeans;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.ServletException;
+
+import org.primefaces.model.file.UploadedFile;
+
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 
 import Services.UserService;
 import tn.esprit.dari.entities.User;
@@ -24,6 +37,7 @@ public class RegisterBean implements Serializable {
 	private String address;
 	private String Ntelephone ;
 	private UserType usertype ;
+	private String profileImage;
 	private User user;
 	
 	@EJB 
@@ -31,9 +45,56 @@ public class RegisterBean implements Serializable {
 
 
 	public void addUser() { 
-		userService.createUser(new User(first_name,last_name,email,password,address,Ntelephone , usertype));
+		userService.createUser(new User(first_name,last_name,email,password,address,Ntelephone , usertype,files.getFileName() ));
 		}
 
+
+	 private UploadedFile files;
+
+	 
+	    public UploadedFile getFiles() {
+			return files;
+		}
+
+		public void setFiles(UploadedFile files) {
+			this.files = files;
+		}
+
+
+		public void doPost() throws IOException, ServletException {
+			
+
+	            	System.out.println(files.getFileName());
+	          
+			System.out.println(files);
+			String fileName = files.getFileName();
+
+			if (fileName.endsWith(".jpg") || fileName.endsWith(".png")) {
+
+				InputStream fileInputStream = files.getInputStream();
+
+				String region = "us-east-1";
+				String bucketName = "mariempidev";
+				String subdirectory = "images/";
+
+				BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJERQSMWBUOBUGXJQ", "tfzn2CeRpISvoNPqXbf1wI3QhoFSlpXxQ7U04G6n");
+
+				AmazonS3 s3client = AmazonS3ClientBuilder.standard().withRegion(region)
+						.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
+				ObjectMetadata metadata = new ObjectMetadata();
+				metadata.setContentLength(files.getSize());
+				PutObjectRequest uploadRequest = new PutObjectRequest(bucketName, subdirectory + fileName, fileInputStream,
+						metadata);
+				uploadRequest.setCannedAcl(CannedAccessControlList.PublicRead);
+
+				s3client.putObject(uploadRequest);
+				String fileUrl = "http://s3.amazonaws.com/" + bucketName + "/" + subdirectory + "/" + fileName;
+
+			} else {
+				System.out.println("error upload");
+			}
+	           
+		}
 
 	public String getFirst_name() {
 		return first_name;
@@ -130,6 +191,22 @@ public class RegisterBean implements Serializable {
 	}
 
 
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
+
+	public RegisterBean() {
+		super();
+	}
+
+
+	
 	
 
 }

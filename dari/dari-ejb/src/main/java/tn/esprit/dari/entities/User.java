@@ -38,6 +38,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
             private Date createdAt;
             private String address;
 			private String Ntelephone ;
+			private String profileImage;
 			
 			@Enumerated(EnumType.STRING)
 			private UserType usertype;
@@ -349,7 +350,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 			public User(String first_name, String last_name, String email, String password, String address,
-					String ntelephone , UserType usertype ) {
+					String ntelephone , UserType usertype , String profileImage ) {
 				super();
 				this.first_name = first_name;
 				this.last_name = last_name;
@@ -358,6 +359,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 				this.address = address;
 				Ntelephone = ntelephone;
 				this.usertype = usertype;
+				this.profileImage=profileImage;
 			}
 
 
@@ -371,6 +373,31 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 				this.password = password;
 				this.address = address;
 				Ntelephone = ntelephone;
+			}
+
+
+			public String getProfileImage() {
+				return profileImage;
+			}
+
+
+			public void setProfileImage(String profileImage) {
+				this.profileImage = profileImage;
+			}
+
+
+			public Set<Contract> getContracts() {
+				return contracts;
+			}
+
+
+			public void setContracts(Set<Contract> contracts) {
+				this.contracts = contracts;
+			}
+
+
+			public static long getSerialversionuid() {
+				return serialVersionUID;
 			}
 			
 			

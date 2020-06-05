@@ -1,39 +1,51 @@
 package ManagedBeans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import Services.UserService;
+import tn.esprit.dari.entities.PurchaseAd;
 import tn.esprit.dari.entities.User;
 import tn.esprit.dari.entities.UserType;
 
 @ManagedBean (name="userBean")
 @SessionScoped
+
 public class UserBean implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
+	private int id;
 	private String first_name;
 
 	private String last_name;
 	private String email;
 	private String password;
-
+	private Date createdAt;
 	private String address;
 	private String Ntelephone ;
 	private UserType usertype ;
 	private User user;
 
 	private Integer UserIdToBeUpdated; 
+	private float number;
 	private List<User> listUser;
+	
+	public static User Iuser = new User();
 	@EJB 
 	UserService userService; 
 
 
 	
-
+public float getNumber() {
+	number=userService.getNombreUser();
+	return(number);
+}
 
 	public void supprimer(int id) {
 
@@ -44,6 +56,7 @@ public class UserBean implements Serializable{
 
 	public List<User> getUsers() {
 		listUser=userService.findAllUsers();
+		System.out.println(listUser);
 		return listUser;
 	}
 
@@ -52,18 +65,20 @@ public class UserBean implements Serializable{
 		return user;
 	}
 
-	public void displayUser(User user) {
-		this.setFirst_name(user.getFirst_name());
-		this.setLast_name(user.getLast_name());
-		this.setEmail(user.getEmail());
-		this.setAddress(user.getAddress());
-		this.setNtelephone(user.getNtelephone());
-		this.setPassword(user.getPassword());
-		this.setUserIdToBeUpdated(user.getId());
+	public String displayUser(User user) {
+		UserBean.Iuser.setFirst_name(user.getFirst_name());
+		UserBean.Iuser.setLast_name(user.getLast_name());
+		UserBean.Iuser.setEmail(user.getEmail());
+		UserBean.Iuser.setAddress(user.getAddress());
+		UserBean.Iuser.setNtelephone(user.getNtelephone());
+		UserBean.Iuser.setPassword(user.getPassword());
+		System.out.println();
+		String navigateTo = "UpdateUser?faces-redirect=true";
+		return navigateTo;
 	}
 
 	public void updateUser() { 
-		userService.updateUser(new User(UserIdToBeUpdated, first_name, last_name, email, password, Ntelephone, address)); } 
+		userService.updateUser(Iuser); } 
 
 
 	public User getUserByMail(String mail) {
@@ -145,6 +160,33 @@ public class UserBean implements Serializable{
 
 	public void setUserIdToBeUpdated(Integer userIdToBeUpdated) {
 		UserIdToBeUpdated = userIdToBeUpdated;
+	}
+
+	
+	public void setNumber(float number) {
+		this.number = number;
+	}
+
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public UserBean() {
+		super();
 	}
 
 

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+
+		<div class="wrapper">
+
+			<div class="page-header page-header-small header-filter">
+				<div class="page-header-image"
+					style="background-image: url('./assets/img/pages/nicolas-prieto.jpg');">
+				</div>
+				<div class="content-center">
+					<div class="row">
+						<div class="col-md-6 mx-auto text-center">
+							<h1 class="title text-white">A Place for Entrepreneurs to
+								Share and Discover New Stories</h1>
+							<a href="#button" class="btn btn-warning btn-round btn-icon-only">
+								<i class="fab fa-twitter"></i>
+							</a> <a href="#button"
+								class="btn btn-warning btn-round btn-icon-only"> <i
+								class="fab fa-instagram"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section features-6">
+				<div class="container">
+					<div class="section section-item">
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-6 col-md-12 ">
+									<div id="productCarousel" class="carousel slide"
+										data-ride="carousel" data-interval="8000">
+										<ol class="carousel-indicators mt-5">
+											<li data-target="#productCarousel" data-slide-to="0" class=""></li>
+											<li data-target="#productCarousel" data-slide-to="1"
+												class="active"></li>
+											<li data-target="#productCarousel" data-slide-to="2" class=""></li>
+										</ol>
+										<div class="carousel-inner" role="listbox">
+											<div class="card-image no-mask">
+												<img  class="d-block" src="https://mariempidev.s3.amazonaws.com/images/#{purchaseBean.image}"
+													alt="First slide" />
+											</div>
+									
+										</div>
+										<a class="carousel-control-prev" href="#productCarousel"
+											role="button" data-slide="prev">
+											<button type="button"
+												class="btn btn-warning btn-icon btn-round btn-sm"
+												name="button">
+												<i class="ni ni-bold-left"></i>
+											</button>
+										</a> <a class="carousel-control-next" href="#productCarousel"
+											role="button" data-slide="next">
+											<button type="button"
+												class="btn btn-warning btn-icon btn-round btn-sm"
+												name="button">
+												<i class="ni ni-bold-right"></i>
+											</button>
+										</a>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-12 mx-auto">
+									<h2 class="title"><h:outputText value="#{purchaseBean.title}"></h:outputText></h2>
+									<div class="stats">
+										<div class="stars text-warning">
+											<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+												class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+												class="far fa-star"></i>
+											<p class="d-inline">(76 customer reviews)</p>
+										</div>
+									</div>
+
+									<h2 ><h:outputText class="main-price" value="#{purchaseBean.date}"></h:outputText></h2>
+										<h3 class="category"><h:outputText  value="#{purchaseBean.description}"></h:outputText></h3>
+									<h6 class="category"><h:outputText value="#{purchaseBean.location}" />
+									</h6>
+									<p class="description"><h:outputText value=""></h:outputText></p>
+
+							
+
+									<div class="row justify-content-start">
+									       <p:gmap center="36.794883,10.143278" zoom="6" type="HYBRID" style="width:100%;height:400px" model="#{purchaseBean.simpleModel}" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

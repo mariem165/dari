@@ -1,7 +1,13 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
+<<<<<<< HEAD
 encoding//src/main/webapp/dashboard.xhtml=UTF-8
+=======
+encoding//src/main/webapp/AjoutPurchase.xhtml=UTF-8
+encoding//src/main/webapp/DetailsPurchase.xhtml=UTF-8
+encoding//src/main/webapp/ListPurchase.xhtml=UTF-8
+>>>>>>> db801b1beab0e812a24c73907b006c92ecce7ef5
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8
 encoding/<project>=UTF-8

@@ -28,8 +28,8 @@ public class JavaMailUtil {
         props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         props.put("mail.smtp.auth", "true");	
         
-        String myEmail = "Site.Dari123@gmail.com";
-        String password = "SiteDari456";
+        String myEmail = "site.dari123@gmail.com";
+        String password = "SitaDari456@";
         
         Session session = Session.getInstance(props, new Authenticator() {
         	@Override

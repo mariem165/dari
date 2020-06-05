@@ -1,14 +1,14 @@
 package Services;
 
 import javax.ejb.Stateless;
-import javax.net.ssl.HostnameVerifier;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+
 
 import Interfaces.IAcheterRemote;
 import tn.esprit.dari.entities.Ad;
-import tn.esprit.dari.entities.Adtype;
+
 import tn.esprit.dari.entities.History;
 import tn.esprit.dari.entities.User;
 

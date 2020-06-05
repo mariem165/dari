@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+
+
+		<div class="header bg-primary pb-6"></div>
+		<div class="container-fluid mt--6">
+
+			<div class="row">
+
+				<div class="col">
+
+					<div class="card" />
+
+					<div class="card-header border-0">
+
+						<h3 class="mb-0">User Management</h3>
+					</div>
+					<div class="table-responsive">
+						<h:panelGroup columns="2">
+							<h:form>
+								<h:dataTable class="table align-items-center table-flush"
+									value="#{userBean.getUsers()}" var="user" border="0">
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Id" />
+										</f:facet>
+										<h:outputText value="#{user.id}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="First_name" />
+										</f:facet>
+										<h:outputText value="#{user.first_name}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Last_name" />
+										</f:facet>
+										<h:outputText value="#{user.last_name}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Email" />
+										</f:facet>
+										<h:outputText value="#{user.email}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Creation Date" />
+										</f:facet>
+										<h:outputText value="#{user.createdAt}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Role" />
+										</f:facet>
+										<h:outputText value=" #{user.usertype}" />
+									</h:column>
+								</h:dataTable>
+							</h:form>
+						</h:panelGroup>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -13,15 +14,15 @@ import Services.UserService;
 import tn.esprit.dari.entities.User;
 import tn.esprit.dari.entities.UserType;
 
+
 @ManagedBean (name="loginBean")
-@SessionScoped 
+@SessionScoped
+
 public class loginBean implements Serializable { 
 	private String email; 
 	private String pwd; 
 	private User user; 
 	private Boolean loggedIn;
-	////zedha coca
-	static User current;
 	@EJB 
 	UserService userService; 
 
@@ -29,21 +30,14 @@ public class loginBean implements Serializable {
 		String navigateTo = "null"; 
 		user = userService.loginUser(email, pwd); 
 		if (user != null && user.getUsertype() == UserType.admin) {
-			System.out.println(email);
-			System.out.println(pwd);
-			navigateTo = "/template/dashboard/main?faces-redirect=true"; loggedIn = true;
-		////zedha coca
-			current=user;
+			navigateTo = "/template/dashboard/main?faces-redirect=true";
+			loggedIn = true;
 			} 
 		else if ((user != null && user.getUsertype() == UserType.bayer ) ||(user != null && user.getUsertype() == UserType.owner )
 				||(user != null && user.getUsertype() == UserType.renter )){
 			navigateTo = "index?faces-redirect=true"; loggedIn = true;
-			////zedha coca
-			current=user;
 		}
 		else {
-			System.out.println(email);
-			System.out.println(pwd);
 				FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));
 				} 
 		return navigateTo;

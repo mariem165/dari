@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.crypto.spec.SecretKeySpec;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -22,6 +23,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.*;
 
 import Interfaces.IUserRemote;
+import Services.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import tn.esprit.dari.entities.AccountState;
@@ -94,12 +96,12 @@ public class UserResource {
 		return userBusiness.findUserById(id);
 	}
 	
+	
 	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("{oldPwd}/{newPwd}")
-	public Response changePwd(User user, @PathParam("oldPwd") String oldPwd, @PathParam("newPwd") String newPwd) {
-		if (userBusiness.changePwd(user, oldPwd, newPwd))
+	public Response changePwd(@PathParam("oldPwd") String oldPwd, @PathParam("newPwd") String newPwd) {
+		if (userBusiness.changePwd(oldPwd, newPwd))
 			return Response.status(Status.OK).entity(true).build();
 		else {
 			return Response.status(Status.FORBIDDEN).entity(false).build();
@@ -122,6 +124,8 @@ public class UserResource {
 
 		return userBusiness.findByMail(mail);
 	}
+	
+	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("login")
@@ -130,7 +134,7 @@ public class UserResource {
 
 		try {
 			User u = authenticate(email, password);
-			//UserType aRole = u.getUsertype();
+			UserType aRole = u.getUsertype();
 			if (u != null) {
 				if (u.getAccountState() != AccountState.ACTIVATED)
 					return Response.status(Response.Status.NOT_ACCEPTABLE)
@@ -148,7 +152,7 @@ public class UserResource {
 						role = "renter";
 					} 
 					System.out.println("++++++++++++++++");
-					String token = issueToken(Integer.toString(u.getId()));
+					String token = issueToken(Integer.toString(u.getId()), role);
 					System.out.println("--------------------------------");
 					System.out.println("token : " + token);
 					//org.json.JSONObject obj = new org.json.JSONObject();
@@ -170,12 +174,12 @@ public class UserResource {
 		return u;
 	}
 
-	private String issueToken(String username) {
+	private String issueToken(String username, String role) {
 		String keyString = "simplekey";
 		System.out.println("1111111111111");
 		Key key = new SecretKeySpec(keyString.getBytes(), 0, keyString.getBytes().length, "DES");
 		System.out.println("22222222222222"+uriInfo.getAbsolutePath().toString());
-		String jwtToken = Jwts.builder().setSubject(username)
+		String jwtToken = Jwts.builder().setSubject(username).claim("Role", role)
 				.setIssuer(uriInfo.getAbsolutePath().toString()).setIssuedAt(new Date())
 				.setExpiration(toDate(LocalDateTime.now().plusMinutes(15L))).signWith(SignatureAlgorithm.HS512, key)
 				.compact();
@@ -188,4 +192,22 @@ public class UserResource {
 	}
 
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("logout")
+	public Response logout() {
+
+		UserService.UserLogged = null;
+		issueToken(null, null);
+		return Response.status(Status.NOT_FOUND).entity(false).build();
+
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("userNumber")
+	public int findUserNumber() {
+
+		return userBusiness.getNombreUser();
+	}
 }

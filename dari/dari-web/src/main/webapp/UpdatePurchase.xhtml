@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+
+		<div class="container ">
+
+			<div class="container-fluid">
+				<div class="row mt-5 mb-4 pt-5">
+					<div class="col-md-8 ml-auto mr-auto text-center mt-5">
+						
+						<h1 class="title">
+							Update purchase Posts
+						</h1>
+						
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 mx-auto ">
+						<h:form>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Title</label>
+											<div class="input-group input-group-alternative">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i
+														class="ni ni-circle-08"></i></span>
+												</div>
+												<h:inputText type="text" class="form-control"
+													pt:placeholder="Title" value="#{purchaseBean.IPurch.title}" />
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Location</label>
+											<div class="input-group input-group-alternative">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i class="ni ni-tag"></i></span>
+												</div>
+												<h:inputText type="text" class="form-control"
+													pt:placeholder="Location.."
+													value="#{purchaseBean.IPurch.location}" />
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Number Room</label>
+											<div class="input-group input-group-alternative">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i
+														class="ni ni-circle-08"></i></span>
+												</div>
+												<h:inputText type="text" class="form-control"
+													pt:placeholder="Title" value="#{purchaseBean.room}" />
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Area</label>
+											<div class="input-group input-group-alternative">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i class="ni ni-tag"></i></span>
+												</div>
+												<h:inputText type="text" class="form-control"
+													pt:placeholder="Location.."
+													value="#{purchaseBean.area}" />
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label>Image</label>
+									<p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+										sizeLimit="100000" description="Select Images"
+										value="#{purchaseBean.IPurch.image}" />
+								</div>
+								<div class="form-group">
+									<label>Description</label>
+									<h:inputTextarea name="description"
+										class="form-control form-control-alternative" id="message"
+										rows="6" value="#{purchaseBean.IPurch.description}">
+									</h:inputTextarea>
+								</div>
+								<div class="form-group">
+									<label>Price</label><br></br>
+									<p:inputNumber id="input2" value="#{purchaseBean.IPurch.price}"
+										symbol=" TND" symbolPosition="s" decimalSeparator=","
+										thousandSeparator=".">
+									</p:inputNumber>
+								</div>
+								<div class="row">
+									<div class="col-md-6 ml-auto">
+									
+										<h:commandButton id="btn" class="btn btn-primary mt-4"
+											value="Create" action="#{purchaseBean.updatePurchase()}" />
+
+									</div>
+
+
+								</div>
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</ui:define>
+</ui:composition>

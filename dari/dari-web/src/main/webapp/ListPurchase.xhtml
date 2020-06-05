@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+
+		<div class="section team-4 bg-default">
+			<div class="container">
+				<div class="row">
+				<h:form>
+					<div class="team-2">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-8 mx-auto text-center mb-5">
+									
+									<h1 class="ui-g-12 ui-md-3" ></h1>
+								</div>
+							</div>
+							<div class="row">
+								<ui:repeat var="item" value="#{backOffice.getAllAds()}">
+
+									<div class="col-lg-4 col-md-6">
+										<div class="card card-profile" data-image="profile-image">
+											
+												<div class="card-image">
+													
+													<a href="javascript:;"> <img class="img rounded"
+														src="https://mariempidev.s3.amazonaws.com/images/#{item.image}" />
+													</a>
+												</div>
+											
+											<div class="card-body pt-0">
+												<h4 href="" class="display-4 mb-0">#{item.title}</h4>
+												<p class="lead">#{item.location}</p>
+												<div class="table-responsive">
+													<ul class="list-unstyled ">
+														
+														
+														
+													</ul>
+												</div>
+												<h:commandButton styleClass="btn btn-info btn-round btn-sm"
+													action="#{purchaseBean.AfficherUnProduit(item)}"
+													value="Details" />
+											</div>
+										</div>
+									</div>
+								</ui:repeat>
+
+							</div>
+						</div>
+					</div>
+</h:form>				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
