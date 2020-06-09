@@ -18,7 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
@@ -46,7 +46,7 @@ public class ContractRessource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCn(Contract con) {
 		conBusines.createCn(con);
-		return Response.status(Status.OK).entity("ok").build(); 
+		return Response.status(Status.OK).entity("ok").build();
 	}
 
 
@@ -83,13 +83,14 @@ public class ContractRessource {
 		conBusines.screenshot();
 		return Response.status(Status.OK).entity("ok").build();
 	}
-
-	/*@POST
+    
+	@GET
 	@Path("image-upload")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	
 	public Response uploadFile(MultipartFormDataInput input) throws IOException {
-		String UPLOADED_FILE_PATH = "c:\temp";
+    	System.out.println("12345");
+		String UPLOADED_FILE_PATH = "C:\\Users\\ASUS\\Pictures\\up";
 		// Get API input data
 		Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
 
@@ -130,7 +131,18 @@ public class ContractRessource {
 		fop.write(content);
 		fop.flush();
 		fop.close();
-	}*/
+	}
+	
+	
+	@Path("search")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response SearchContrat(@QueryParam("first_name") String first_name,@QueryParam("start_Date") String start_Date,@QueryParam("end_Date") String end_Date,@QueryParam("last_name") String last_name,@QueryParam("email") String email) {
+		if (conBusines.SearchContrat(first_name,start_Date,end_Date,last_name,email).size() == 0)
+			return Response.status(Response.Status.NO_CONTENT).build();
+		else
+			return Response.ok(conBusines.SearchContrat(first_name,start_Date,end_Date,last_name,email), MediaType.APPLICATION_JSON).build();
+	}
 	/*@POST
 	@Path("/image")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -139,7 +151,7 @@ public class ContractRessource {
 	    @FormParam("file") InputStream uploadedInputStream,
 	    @FormParam("file") FormParamMarshaller fileDetails) {
 
-	  //ystem.out.println(fileDetails.getFileName());
+	  ystem.out.println(fileDetails.getFileName());
 
 	   String uploadedFileLocation = "/Users/temp/" + fileDetails.toString();
 

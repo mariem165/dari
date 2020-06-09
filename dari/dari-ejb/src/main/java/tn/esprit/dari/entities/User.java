@@ -22,7 +22,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 	public class User implements Serializable {
 		
 		
-			
+ 		
+		@Override
+		public String toString() {
+			return "User [first_name=" + first_name + ", last_name=" + last_name + "]";
+		}
+
+
 			private static final long serialVersionUID = 1L;
 		 
 			@Id
@@ -115,8 +121,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 			public void setLast_name(String last_name) {
 				this.last_name = last_name;
 			}
-
-
 
 
 

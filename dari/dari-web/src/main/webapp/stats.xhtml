@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+
+
+		<div class="header bg-primary pb-6"></div>
+		<div class="container-fluid mt--6">
+
+			<div class="row">
+
+				<div class="col">
+
+					<div class="card" />
+
+					<div class="card-header border-0">
+
+						<h3 class="mb-0">Assign contract to user</h3>
+					</div>
+					<div class="col-md-12">
+						<div id="k" style="display: none">
+							<ui:repeat value="#{contractBean.allStat}" var="value">
+								<p>#{value}</p>
+							</ui:repeat>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<canvas id="oilChart" width="600" height="400"></canvas>
+								<script>
+						   var l = [];
+						   var d = [];
+						   var ele = document.getElementById('k').children;
+						   for (var i = 0; i &lt; 3; i++) {
+								l.push(ele[i].innerHTML);
+							}
+							for (var i = 3; i &lt; 6; i++) {
+								d.push(parseInt(ele[i].innerHTML.substring(0, ele[i].innerHTML.length - 1)));
+							}
+							console.log(l);
+							console.log(d);
+							var oilCanvas = document.getElementById("oilChart");
+
+							Chart.defaults.global.defaultFontFamily = "Lato";
+							Chart.defaults.global.defaultFontSize = 18;
+
+							var oilData = {
+								labels : l,
+								datasets : [ {
+									data : d,
+									backgroundColor : [ "#1e222d", "#1c4471",
+											"#5e72e4" ]
+								} ]
+							};
+							
+
+							var pieChart = new Chart(oilCanvas, {
+								type : 'pie',
+								data : oilData
+							});
+						</script>
+							</div>
+							<div class="col-md-6">
+								<!-- TradingView Widget BEGIN -->
+								<div class="tradingview-widget-container">
+									<div class="tradingview-widget-container__widget"></div>
+									<div class="tradingview-widget-copyright">
+										<a href="https://www.tradingview.com" rel="noopener"
+											target="_blank"><span class="blue-text">Market
+												Data</span></a> by TradingView
+									</div>
+									<script type="text/javascript"
+										src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"
+										async="async">
+  {
+  "colorTheme": "dark",
+  "dateRange": "3m",
+  "showChart": true,
+  "locale": "en",
+  "largeChartUrl": "",
+  "isTransparent": false,
+  "width": "400",
+  "height": "660",
+  "plotLineColorGrowing": "rgba(25, 118, 210, 1)",
+  "plotLineColorFalling": "rgba(25, 118, 210, 1)",
+  "gridLineColor": "rgba(42, 46, 57, 1)",
+  "scaleFontColor": "rgba(120, 123, 134, 1)",
+  "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
+  "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
+  "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
+  "tabs": [
+    {
+      "title": "Indices",
+      "symbols": [
+        {
+          "s": "FX:EURUSD",
+          "d": "EURO / U.S. DOLLAR"
+        },
+        {
+          "s": "FX_IDC:EURTND",
+          "d": "EURO / TUNISIAN DINAR"
+        },
+        {
+          "s": "FX_IDC:USDTND",
+          "d": "U.S. DOLLAR / TUNISIAN DINAR"
+        }
+      ],
+      "originalTitle": "Indices"
+    },
+    {
+      "title": "Commodities",
+      "symbols": [
+        {
+          "s": "CME_MINI:ES1!",
+          "d": "E-Mini S&amp;P"
+        },
+        {
+          "s": "CME:6E1!",
+          "d": "Euro"
+        },
+        {
+          "s": "COMEX:GC1!",
+          "d": "Gold"
+        },
+        {
+          "s": "NYMEX:CL1!",
+          "d": "Crude Oil"
+        },
+        {
+          "s": "NYMEX:NG1!",
+          "d": "Natural Gas"
+        },
+        {
+          "s": "CBOT:ZC1!",
+          "d": "Corn"
+        }
+      ],
+      "originalTitle": "Commodities"
+    },
+    {
+      "title": "Bonds",
+      "symbols": [
+        {
+          "s": "CME:GE1!",
+          "d": "Eurodollar"
+        },
+        {
+          "s": "CBOT:ZB1!",
+          "d": "T-Bond"
+        },
+        {
+          "s": "CBOT:UB1!",
+          "d": "Ultra T-Bond"
+        },
+        {
+          "s": "EUREX:FGBL1!",
+          "d": "Euro Bund"
+        },
+        {
+          "s": "EUREX:FBTP1!",
+          "d": "Euro BTP"
+        },
+        {
+          "s": "EUREX:FGBM1!",
+          "d": "Euro BOBL"
+        }
+      ],
+      "originalTitle": "Bonds"
+    },
+    {
+      "title": "Forex",
+      "symbols": [
+        {
+          "s": "FX:EURUSD"
+        },
+        {
+          "s": "FX:GBPUSD"
+        },
+        {
+          "s": "FX:USDJPY"
+        },
+        {
+          "s": "FX:USDCHF"
+        },
+        {
+          "s": "FX:AUDUSD"
+        },
+        {
+          "s": "FX:USDCAD"
+        }
+      ],
+      "originalTitle": "Forex"
+    }
+  ]
+}
+  </script>
+								</div>
+								<!-- TradingView Widget END -->
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

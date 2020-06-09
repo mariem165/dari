@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+
+
+		<div class="header bg-primary pb-6"></div>
+		<div class="container-fluid mt--6">
+
+			<div class="row">
+
+				<div class="col">
+
+					<div class="card" />
+
+					<div class="card-header border-0">
+
+						<h3 class="mb-0">Contracts list</h3>
+					</div>
+					<h:form role="form">
+
+						<div class="form-group">
+							<h:outputText class="card-title" value="first name" />
+							<div class="input-group input-group-alternative mb-3">
+
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-user" /></span>
+								</div>
+
+								<h:inputText class="form-control" label="First-name" type="text"
+									value="#{contractBean.first_name}" placeholder="first name" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<h:outputText class="card-title" value="last name" />
+							<div class="input-group input-group-alternative mb-3">
+
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-user" /></span>
+								</div>
+								<h:inputText class="form-control" label="last-name" type="text"
+									value="#{contractBean.last_name}" placeholder="last name" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<h:outputText class="card-title" value="email" />
+							<div class="input-group input-group-alternative mb-3">
+
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83" /></span>
+								</div>
+
+								<h:inputText class="form-control" label="Email"
+									placeholder="email" type="email" value="#{contractBean.email}" />
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-6 form-group">
+								<h:outputText class="card-title" value="Start date " />
+								<div class="input-group">
+									<div class="input-group-prepend datepicker-icon"
+										style="cursor: pointer;">
+										<span class="input-group-text"><i
+											class="fa fa-calendar"></i></span>
+
+										<h:inputText id="dte" styleClass="form-control datepicker"
+											style="padding-left:12px;"
+											value="#{contractBean.start_Datee}" autocomplete="off"
+											required="true"
+											requiredMessage="Vous devez indiquer le date de fin">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:inputText>
+									</div>
+									<h:message for="dte" style="color:red"></h:message>
+								</div>
+							</div>
+							<div class="col-md-6 form-group">
+								<h:outputText class="card-title" value="End date " />
+								<div class="input-group">
+									<div class="input-group-prepend datepicker-icon"
+										style="cursor: pointer;">
+										<span class="input-group-text"><i
+											class="fa fa-calendar"></i></span>
+
+										<h:inputText id="dtee" styleClass="form-control datepicker"
+											style="padding-left:12px;" value="#{contractBean.end_Datee}"
+											autocomplete="off" required="true"
+											requiredMessage="Vous devez indiquer le date de fin">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:inputText>
+									</div>
+								</div>
+								<h:message for="dtee" style="color:red"></h:message>
+							</div>
+
+						</div>
+
+						<div class="row" style="margin-bottom:70px">
+							<div class="col-md-6">
+								<div class="text-center">
+									<h:commandButton id="btn" class="btn btn-primary mt-4"
+										value="search" action="#{contractBean.searchContract()}" />
+
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="text-center">
+									<h:commandButton id="btnn" class="btn btn-primary mt-4"
+										value="return" action="#{contractBean.listdescont()}" />
+
+								</div>
+							</div>
+						</div>
+					</h:form>
+
+					<h:form role="form">
+
+						<div class="col-xl-12">
+							<div class="card">
+								<div class="card-header border-0">
+									<div class="row align-items-center">
+										<div class="col">
+											<h3 class="mb-0">Page visits</h3>
+										</div>
+									</div>
+								</div>
+								<div class="table-responsive">
+									<!-- Projects table -->
+									<table class="table align-items-center table-flush">
+
+										<thead class="thead-light">
+											<tr>
+												<th scope="col">Type</th>
+												<th scope="col">User</th>
+												<th scope="col">Start date</th>
+												<th scope="col">End date</th>
+												<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<ui:repeat value="#{contractBean.lstcontract}" var="entry">
+
+
+												<tr>
+													<th scope="row">#{entry.contract_model_type}</th>
+													<td>#{entry.user.first_name}</td>
+													<td><h:outputText id="date2"
+															converterMessage="#{i18n['converter-message']}"
+															value="#{entry.start_Date}">
+															<f:convertDateTime pattern="dd/MM/yyyy" />
+														</h:outputText></td>
+													<td><h:outputText id="date"
+															converterMessage="#{i18n['converter-message']}"
+															value="#{entry.end_Date}">
+															<f:convertDateTime pattern="dd/MM/yyyy" />
+														</h:outputText></td>
+													<td><h:commandButton value="update Contract"
+															action="#{contractBean.addcont(entry)}"
+															class="btn btn-sm btn-primary" /></td>
+												</tr>
+											</ui:repeat>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

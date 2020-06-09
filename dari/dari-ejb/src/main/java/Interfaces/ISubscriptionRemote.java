@@ -14,4 +14,5 @@ public interface ISubscriptionRemote {
 	public void deleteSub(int id);
 	public List<Subscription> findAllSubs();
 	public void updateSub(Subscription sb, int id);
+	public List<Subscription>findSubcription(int id);
 }

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+
+
+		<div class="header bg-primary pb-6"></div>
+		<div class="container-fluid mt--6">
+
+			<div class="row">
+
+				<div class="col">
+
+					<div class="card" />
+
+					<div class="card-header border-0">
+
+						<h3 class="mb-0">Assign contract to user</h3>
+					</div>
+					<div class="col-md-12">
+
+						<h:form role="form">
+							<div class="card card-primary">
+								<div class="card-header">
+									<div class="user-block">
+										<span> <a href="#">add Contract </a></span>
+									</div>
+								</div>
+
+								<div class="card-body">
+
+
+									<div class="form-group">
+										<h:outputText class="card-title" value="Start date " />
+										<div class="input-group">
+											<div class="input-group-prepend datepicker-icon"
+												style="cursor: pointer;">
+												<span class="input-group-text"><i
+													class="fa fa-calendar"></i></span>
+											</div>
+											<h:inputText id="dte" styleClass="form-control datepicker"
+												style="padding-left:12px;"
+												value="#{contractBean.contract.start_Date}"
+												autocomplete="off" required="true"
+												requiredMessage="Vous devez indiquer le date de fin">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:inputText>
+										</div>
+										<h:message for="dte" style="color:red"></h:message>
+									</div>
+									<div class="form-group">
+										<h:outputText class="card-title" value="Start date " />
+										<div class="input-group">
+											<div class="input-group-prepend datepicker-icon"
+												style="cursor: pointer;">
+												<span class="input-group-text"><i
+													class="fa fa-calendar"></i></span>
+											</div>
+											<h:inputText id="dtf" styleClass="form-control datepicker"
+												style="padding-left:12px;"
+												value="#{contractBean.contract.end_Date}" autocomplete="off"
+												required="true"
+												requiredMessage="Vous devez indiquer le date de fin">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:inputText>
+										</div>
+										<h:message for="dtf" style="color:red"></h:message>
+									</div>
+
+									<div class="form_group">
+										<h:outputText class="card-title" value="Type Contrat"></h:outputText>
+										<h:selectOneMenu
+											value="#{contractBean.contract.contract_model_type}"
+											class="form-control">
+											<f:selectItem itemLabel="Slectionner Type  contrat "
+												itemValue="" />
+											<f:selectItem itemLabel="location" itemValue="location" />
+											<f:selectItem itemLabel="vente" itemValue="vente" />
+											<f:selectItem itemLabel="garants" itemValue="garants" />
+										</h:selectOneMenu>
+									</div>
+								</div>
+
+								<div class="card-footer">
+									<h:commandButton class="btn btn-primary float-right"
+										value="update" action="#{contractBean.updateConract()}" />
+								</div>
+							</div>
+
+						</h:form>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

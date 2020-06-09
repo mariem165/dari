@@ -1,6 +1,7 @@
 package ManagedBeans;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import javax.ejb.EJB;
 
@@ -8,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import Services.UserService;
@@ -28,18 +30,33 @@ public class loginBean implements Serializable {
 
 	public String doLogin() { 
 		String navigateTo = "null"; 
+		try {
 		user = userService.loginUser(email, pwd); 
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		Map<String, Object> sessionMap = externalContext.getSessionMap();
+		sessionMap.put("emp", user);
+		
 		if (user != null && user.getUsertype() == UserType.admin) {
+			System.out.println("id user Connected"+user.getId());
 			navigateTo = "/template/dashboard/main?faces-redirect=true";
 			loggedIn = true;
 			} 
 		else if ((user != null && user.getUsertype() == UserType.bayer ) ||(user != null && user.getUsertype() == UserType.owner )
 				||(user != null && user.getUsertype() == UserType.renter )){
+			System.out.println("id user Connected"+user.getId());
 			navigateTo = "index?faces-redirect=true"; loggedIn = true;
 		}
 		else {
 				FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));
-				} 
+				
+		}} 
+		
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));
+			e.printStackTrace();
+		}
+		
 		return navigateTo;
 		}
 	

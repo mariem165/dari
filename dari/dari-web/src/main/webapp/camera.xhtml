@@ -1,0 +1,96 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+		<style>
+#container {
+	margin: 0px auto;
+	width: 500px;
+	height: 375px;
+	border: 10px #333 solid;
+	display: block;
+}
+
+#videoElement {
+	width: 500px;
+	height: 375px;
+	background-color: #666;
+}
+
+#myBtn2 {
+	display: none
+}
+</style>
+
+
+		<div class="header bg-primary pb-6"></div>
+		<div class="container-fluid mt--6">
+
+			<div class="row">
+
+				<div class="col">
+
+					<div class="card" />
+
+					<div class="card-header border-0">
+
+						<h3 class="mb-0">Real time camera</h3>
+					</div>
+					<section class="section section-shaped section-lg">
+
+					<div class="shape shape-style-1 bg-gradient-red">
+						<span /> <span /> <span /> <span /> <span /> <span /> <span />
+						<span />
+					</div>
+					<div id="container">
+						<video autoplay="true" id="videoElement"> </video>
+					</div>
+					</section>
+					<div class="row" style="margin-top:100px">
+						<div class="col-md-6">
+							<h:form>
+								<h:commandButton id="myBtn" value="start recording"
+									type="submit" action="#{subscriptionBean.screenshot()}"
+									class="btn btn-primary">
+								</h:commandButton>
+
+							</h:form>
+						</div>
+						<div class="col-md-6">
+							<h:form>
+								<h:commandButton id="myBtn2" value="stop recording"
+									type="submit" action="#{subscriptionBean.stopScreenshot()}"
+									class="btn btn-primary">
+								</h:commandButton>
+
+							</h:form>
+						</div>
+
+					</div>
+					<script>
+var video = document.querySelector("#videoElement");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+document.getElementById("myBtn").addEventListener("click", function(){ document.getElementById("myBtn2").style.display = "block"; });
+
+</script>
+
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+

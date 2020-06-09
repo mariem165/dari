@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import tn.esprit.dari.entities.Subscription;
 import Interfaces.ISubscriptionRemote;
@@ -53,5 +55,21 @@ public class subscriptionService implements ISubscriptionRemote {
 			s.setInsurence(sub.getInsurence());
 		}
 
+	}
+
+	@Override
+	public List<Subscription> findSubcription(int id) {
+		TypedQuery<Subscription>query;
+		
+		query=entityManager.createQuery("SELECT e FROM Subscription e WHERE e.user.id=:user",Subscription.class);
+		
+		query.setParameter("user", id);
+		List<Subscription> sub=null;
+		try {
+		sub=query.getResultList();
+		}catch(NoResultException e) {
+			System.out.println("erreur ");
+		}
+		return sub;
 	}
 }

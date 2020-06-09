@@ -28,14 +28,30 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 		@Id
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		private int id;
-		
+		private String image;
 	
 	
-		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+		public String getImage() {
+			return image;
+		}
+
+		public void setImage(String image) {
+			this.image = image;
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 
 		private Date start_Date;
 	
-		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 		private Date end_Date;
 	
 	
