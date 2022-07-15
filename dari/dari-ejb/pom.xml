@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-s3</artifactId>
-			<version>1.11.787</version>
+			<version>1.12.261</version>
 		</dependency>
 
 		<!-- Import the CDI API, we use provided scope as the API is included in 
